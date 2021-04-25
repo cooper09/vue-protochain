@@ -41,6 +41,7 @@ export default {
              this.transactions = block.transactions;
              return 
           } //end iffy 
+          return ("Transaction not found")
         })
   }
 }//export

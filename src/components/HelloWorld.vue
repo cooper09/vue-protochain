@@ -2,16 +2,14 @@
   <v-container class="animated fadeIn ">
 
      <div v-for= "block in blocks" :key="block.hash">
-              
-
               <v-layout row wrap >
                 <v-flex  xs12 sm6 md4 lg3 :key="block.id" v-for="block in blocks" class="blocks">
                   <div class="col-sn">
-                      <BlockItem v-bind:block="block"/><v-btn @click="showTxs(block.hash)">Transactions</v-btn>
+    
+                      <BlockItem v-bind:block="block" />
                   </div>
                 </v-flex>
             </v-layout>
-    
          
     </div>
   </v-container>

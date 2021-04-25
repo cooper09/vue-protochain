@@ -40,10 +40,12 @@ export default {
  props: ["block"],
    methods: {
     showTransactions(hash) {
+      this.$emit('show-transactions', hash );
       //which block was selected
-      console.log("Selected block hash: "+ hash );
-      this.$store.dispatch('setSelectedBlock', hash);
+      //console.log("Selected block hash: "+ hash );
+      //this.$store.dispatch('setSelectedBlock', hash);
       this.$router.push('/transactions')
+  
     }
   },//end methods
 }//end export 
