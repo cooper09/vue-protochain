@@ -1,7 +1,7 @@
 <template>
   <div class="animated fadeIn">
     <v-btn class="right" @click="closeMe">X</v-btn>
-    <h1>List Transactions page</h1>
+    <h1>List Transactions page</h1>adsf
     {{transactions}}
   </div>
 </template>
@@ -36,8 +36,7 @@ export default {
         //console.log()
 
         this.chain.map( block => {
-          console.log("This blocks hash: ", block.hash );
-          if (block.hash === this.block ) {
+          if (block.hash === this.block.hash ) {
              this.transactions = block.transactions;
              return 
           } //end iffy 

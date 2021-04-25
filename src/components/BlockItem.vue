@@ -44,7 +44,8 @@ export default {
       //which block was selected
       //console.log("Selected block hash: "+ hash );
       //this.$store.dispatch('setSelectedBlock', hash);
-      this.$router.push('/transactions')
+      //this.$router.push('/transactions')
+      this.$router.push({name:'List Transactions', params: {foo: this.block}})
   
     }
   },//end methods
