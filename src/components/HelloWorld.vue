@@ -1,22 +1,30 @@
 <template>
-  <v-container class="animated fadeIn container">
-    <div>
-      <span><v-btn class="right" @click="createPage()">Create Transaction</v-btn></span>
-      <span><v-btn class="right" @click="settingsPage()">Settings</v-btn></span>
-    </div>
+  <v-container class="animated fadeIn ">
+
      <div v-for= "block in blocks" :key="block.hash">
-         {{block}} <v-btn @click="showTxs(block.hash)">Transactions</v-btn>
-         
-     <!--     <router-link to='/transactions'>Transactions</router-link> 
-         <router-link :to="{ name: '/transactions', params: {block} }" ></router-link> -->
+              
+
+              <v-layout row wrap >
+                <v-flex  xs12 sm6 md4 lg3 :key="block.id" v-for="block in blocks" class="blocks">
+                  <div class="col-sn">
+                      <BlockItem v-bind:block="block"/><v-btn @click="showTxs(block.hash)">Transactions</v-btn>
+                  </div>
+                </v-flex>
+            </v-layout>
+    
          
     </div>
   </v-container>
 </template>
 
 <script>
+import BlockItem from './BlockItem.vue';
+
 export default {
   name: 'ListTransactions',
+  components: {
+    BlockItem
+  },
   data: () => ({
     blocks: [
       {
@@ -55,17 +63,11 @@ export default {
       console.log("HelloWorld - Coin in the store: ", this.coin.miningReward );
       this.blocks = this.coin.chain;
 
-      //this.keys = this.$store.getters.getKeys;
-      //console.log("Our keys to the castle: ", this.keys)
+      this.keys = this.$store.getters.getKeys;
+      console.log("Our keys to the castle: ", this.keys)
     }
 };//end export
 </script>
 <style scoped>
-  .btn {
-    background: #ddd;
-    cursor: pointer;
-  }
-  .container {
-    background: pink;
-  }
+
 </style>

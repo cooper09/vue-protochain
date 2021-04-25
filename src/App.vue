@@ -2,8 +2,8 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span class="btn"><img src="./logo.png" width="40"></span>
+        <span class="font-weight-light">Proto-Chain</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
@@ -15,14 +15,20 @@
       </v-btn>
     </v-app-bar>
     <v-content   class="animated fadeIn">
-      <p>App.vue</p>
-        Wallet (Public) Address: {{keys.publicKey}}
+
+       <h2>Proto-Chain Blockchain</h2>
+    Each card represents a block on the uploaded blockchain. Click "Show Transactions" to see the transactions stored inside.
+    <p></p>fas
+    <p class="wrap">
+        <b>Wallet (Public) Address: {{keys.publicKey}}</b>
+    </p>
+    
          <router-view></router-view>
-      <HelloWorld/> 
-     
+          <span><v-btn class="btn right" outlined raised primary color="indigo" @click="createPage()">Create Transaction</v-btn></span>
+          <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="settingsPage()">Settings</v-btn></span>
     </v-content>
     <v-content transition="slide-x-transition">
-
+            <HelloWorld/> 
     </v-content>
 
   </v-app>
@@ -45,8 +51,17 @@ export default {
   methods: {
     appMethod (){
       console.log('appMethod at our service...')
-    }
-  },
+    },
+     settingsPage() {
+    console.log("settings page")
+      this.$router.push('/settings')
+    },
+  createPage(){
+      //this.$router.push({name: 'Create Transactions', params: {keys: this.keys }})
+      this.$router.push('/create')
+    },
+  },//end methods
+
   created () {
     console.log(' AppVue - Create new test class')
 
@@ -70,4 +85,23 @@ body {
 .right {
   float: right;
 }
+.container {
+     border: 1px solid indigo; 
+      padding: 1em;
+    }
+.wrap {
+    white-space: nowrap ;
+    word-break: normal;
+    overflow: hidden ;
+    text-overflow: ellipsis;
+  }
+.blocks {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 1rem;
+}
+ .btn {
+  margin-right: 1em;
+  cursor: pointer;
+ }
 </style>
