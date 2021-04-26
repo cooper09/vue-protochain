@@ -9,7 +9,7 @@
         </v-btn>
     <h3  class="myIndigo">List of Transactions for Block: </h3> <span><p class="wrap">{{block.hash}}</p></span>
 
-    <div v-for="tx in transactions" :key="toAddress">
+    <div v-for="tx in transactions" :key="tx.toAddress">
       <span class="transaction" > Transaction </span>
       <div class="tx">
         <p class="wrap"><b>To: </b>{{tx.toAddress}}</p>
