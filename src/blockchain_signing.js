@@ -23,10 +23,10 @@ class Transaction {
         //check public key to make sure we have the right wallet
     
         // cooper s - this is supposed to work but doesn't - why?
-    /* if(keySignature.getPublic('hex') !== this.fromAddress ) {
+     if(keySignature.getPublic('hex') !== this.fromAddress ) {
             throw new Error("This wallet cannot sign this transaction. Sorry!")
         }//end if
-        */
+       
         const hashTx = this.calculateHash();
         const signature = keySignature.sign(hashTx, 'base64');
         this.signature = signature.toDER('hex');
