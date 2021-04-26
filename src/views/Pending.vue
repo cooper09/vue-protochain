@@ -75,6 +75,7 @@ export default {
 
   console.log("Final Chain: ", this.coin.chain )
 
+  alert("Congratulations! You're block has been mined...")
     
     }
   },//end methods
