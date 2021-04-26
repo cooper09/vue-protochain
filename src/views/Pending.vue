@@ -8,15 +8,25 @@
                   color="indigo" 
                   @click="closeMe()">Exit
         </v-btn>
-    <h1>Pending Transactions page</h1>
+    <h1>Pending Transactions</h1>
     <v-row>
-    <v-responsive> 
-      Current Transaction: {{tx}}
+    <v-responsive>
+      <div class="task"> 
+        Current Transaction ready to mined (added to the Blockchain):<br/><br/>
+        <p class="wrap">
+          To: {{tx.toAddress}} <br/>
+        </p>
+        <p class="wrap">
+          From: {{tx.fromAddress}}<br/>
+        </p>
+        Amount: {{tx.amount}}<br/>
+      </div>
+
     </v-responsive> 
     </v-row>
 
       <div>
-              <v-btn
+        <v-btn
                 class="ma-2"
                 outlined
                 raised
@@ -25,21 +35,25 @@
                 @click="beginMining()"
               >
                 Start Mining
-              </v-btn>
+          </v-btn>
         </div>
 
     </div>
 </template>
 <script>
+import {ServerTable, ClientTable, Event} from 'vue-tables-2';
 export default {
   name: 'Pending',
   data() {
     return {
       tx: {},
       coin:{},
-      keys:{}
-    }
-  },
+      keys:{},
+      data: () => ({
+
+      }),
+    }//end return
+  },//end data
   methods: {
     closeMe(){
       this.$router.push('/');
@@ -79,7 +93,15 @@ export default {
 }//export
 </script>
 <style scoped>
-  .closeBtn {
-    float: right;
-  }
+.task {
+  background: #f4f4f4;
+  margin: 0.5em;
+  padding: 1em;
+  cursor:pointer;
+}
+.task h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 </style>
