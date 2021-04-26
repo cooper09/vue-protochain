@@ -1,25 +1,38 @@
 <template>
-  <div class="animated fadeIn">
-    <v-btn class="right" @click="closeMe">X</v-btn>
-    <h1>Create Transaction page</h1>
-<!--    <Pending /> -->
-
-     <v-container>
+    <v-container   class="animated fadeIn container">
+      <span class="right"><v-btn                   outlined
+                  raised
+                  primary
+                  color="indigo"  @click="exitPage()">Exit</v-btn></span>
+   <h3>Create Transaction </h3>
+  <p>Transfer some tokens/coins to someone!</p>
+    <v-container>
         <form  @submit="submitTransaction()">
           <br/><br/>
-            From Address: <input id="from" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly"><br/>
-          
+            From Address: <input id="from" type="text" v-model="from" :placeholder="keys.publicKey" class="border" width="700" readonly="readonly"><br/>
+            <p  class="smallFont">This is your wallet address. You cannot change it because you can only spend your own coins.</p>
             <br/>
-            To Address:  <input id="to" type="text" v-model="to" placeholder ="" class="border"><br/>  <br/><br/>
-            
+            To Address:  <input id="to" type="text" v-model="to" placeholder ="" class="border"><br/>
+            <p  class="smallFont">The address of the wallet where you want to send the money to. You can type random text here (if you are not interested in recovering the funds)
+</p><br/>
             Amount: <input id="amount" type="text" v-model="amount" placeholder ="" class="border"><br/>
-           
+            <p  class="smallFont">You can transfer any amount. Account balance is not checked in this demo. Have at it</p><br/>
            
         </form>
-            <v-btn  @click="createTx()">Sign & Create</v-btn>
-     </v-container>
-       
-  </div>
+        <div>
+              <v-btn
+                class="ma-2"
+                outlined
+                raised
+                primary
+                color="indigo"
+                @click="createTx()"
+              >
+                Sign & Create transaction
+              </v-btn>
+        </div>
+       </v-container>
+    </v-container>
 </template>
 <script>
 import {Transaction} from '../blockchain_signing.js';
@@ -42,15 +55,11 @@ export default {
     closeMe(){
       this.$router.push('/');
     },
-    showPending (){
-      alert("Show pending page....");
-      //this.$router.push('/pending')
-    },
     createTx (){
       console.log("Create and sign a transaction", this.coin);
-      //this.keys = this.$store.getters.getKeys;
       console.log("CreateTX - Our keys to the castle: ", this.keys)
 
+  //retrieve our public (walletPublicAddr) and  () key
       const walletKey = this.keys.walletKey;
       const walletPublicAddr = this.keys.walletPublicAddr;
 

@@ -16,9 +16,9 @@
     </v-app-bar>
     <v-content   class="animated fadeIn">
 
-       <h2>Proto-Chain Blockchain</h2>
+    <h2>Proto-Chain Blockchain</h2>
     Each card represents a block on the uploaded blockchain. Click "Show Transactions" to see the transactions stored inside.
-    <p></p>fas
+    <p></p>
     <p class="wrap">
         <b>Wallet (Public) Address: {{keys.publicKey}}</b>
     </p>
@@ -101,7 +101,7 @@ body {
   grid-gap: 1rem;
 }
  .btn {
-  margin-right: 1em;
+  margin: 1em;
   cursor: pointer;
  }
 </style>
