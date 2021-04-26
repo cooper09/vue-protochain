@@ -7,10 +7,10 @@
           color="indigo" 
           @click="closeMe()">Exit
         </v-btn>
-    <h3>List of Transactions for Block: </h3> <span><p class="wrap">{{block.hash}}</p></span>
+    <h3  class="myIndigo">List of Transactions for Block: </h3> <span><p class="wrap">{{block.hash}}</p></span>
 
     <div v-for="tx in transactions" :key="toAddress">
-      <span class="blue" > Transaction </span>
+      <span class="transaction" > Transaction </span>
       <div class="tx">
         <p class="wrap"><b>To: </b>{{tx.toAddress}}</p>
         <p class="wrap"><b>From: </b>{{tx.fromAddress}}</p>
@@ -70,7 +70,7 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
-.blue {
+.transaction {
   color: white;
   font-style: bold;
   background: indigo;
