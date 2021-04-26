@@ -5,7 +5,7 @@
       <v-responsive class="pt-4"> 
   <!--     <center><img src="../logo.png" width="35"/></center> -->
       </v-responsive>
-        <h3>Block</h3>   {{block.index}} 
+        <h3 class="myIndigo">Block</h3>   {{block.index}} 
          <v-card-text>
                 <div class="subheading wrap">
                 <p class="text-wrap" >
@@ -41,10 +41,6 @@ export default {
    methods: {
     showTransactions(hash) {
       this.$emit('show-transactions', hash );
-      //which block was selected
-      //console.log("Selected block hash: "+ hash );
-      //this.$store.dispatch('setSelectedBlock', hash);
-      //this.$router.push('/transactions')
       this.$router.push({name:'List Transactions', params: {foo: this.block}})
   
     }

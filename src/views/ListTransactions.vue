@@ -1,8 +1,22 @@
 <template>
-  <div class="animated fadeIn">
-    <v-btn class="right" @click="closeMe">X</v-btn>
-    <h1>List Transactions page</h1>
-    {{transactions}}
+  <div class="animated fadeIn borderline">
+        <v-btn class="btn right" 
+          outlined
+          raised
+          primary
+          color="indigo" 
+          @click="closeMe()">Exit
+        </v-btn>
+    <h3>List of Transactions for Block: </h3> <span><p class="wrap">{{block.hash}}</p></span>
+
+    <div v-for="tx in transactions" :key="toAddress">
+      <span class="blue" > Transaction </span>
+      <div class="tx">
+        <p class="wrap"><b>To: </b>{{tx.toAddress}}</p>
+        <p class="wrap"><b>From: </b>{{tx.fromAddress}}</p>
+        <p><b>Amount: </b>{{tx.amount}}</p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -45,4 +59,22 @@ export default {
 }//export
 </script>
 <style scoped>
+.tx {
+  background: #f4f4f4;
+  margin: 0.5em;
+  padding: 1em;
+  cursor:pointer;
+}
+.tx h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blue {
+  color: white;
+  font-style: bold;
+  background: indigo;
+  padding: 0.25em;
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="animated fadeIn">
+  <div class="animated fadeIn borderline">
 
         <v-btn class="btn right" 
                   outlined

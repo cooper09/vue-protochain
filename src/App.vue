@@ -16,11 +16,11 @@
     </v-app-bar>
     <v-content   class="animated fadeIn">
 
-    <h2>Proto-Chain Blockchain</h2>
+    <h2 class="myIndigo">Proto-Chain Blockchain</h2>
     Each card represents a block on the uploaded blockchain. Click "Show Transactions" to see the transactions stored inside.
     <p></p>
-    <p class="wrap">
-        <b>Wallet (Public) Address: {{keys.publicKey}}</b>
+    <p class="wrap m">
+        <span class="myIndigo"><b>Wallet (Public) Address:</b></span> {{keys.publicKey}}
     </p>
     
          <router-view></router-view>
@@ -104,4 +104,11 @@ body {
   margin: 1em;
   cursor: pointer;
  }
+ .borderline {
+  border: solid 1px indigo;
+  padding: 1em;
+}
+.myIndigo {
+  color: indigo;
+}
 </style>
