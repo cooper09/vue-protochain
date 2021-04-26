@@ -4,7 +4,7 @@
                   raised
                   primary
                   color="indigo"  @click="exitPage()">Exit</v-btn></span>
-   <h3>Create Transaction </h3>
+   <h3 class="myIndigo">Create Transaction </h3>
   <p>Transfer some tokens/coins to someone!</p>
     <v-container>
         <form  @submit="submitTransaction()">
@@ -12,10 +12,10 @@
             <b>From Address:</b>  <input id="from" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly"><br/>
             <p  class="smallFont">This is your wallet address. You cannot change it because you can only spend your own coins.</p>
             <br/>
-            <b>To Address:</b> <input id="to" type="text" v-model="to" placeholder ="" class="border"><br/>
+            <b>To Address:</b> <input id="to" type="text" v-model="to" placeholder ="0x000" class="border"><br/>
             <p  class="smallFont">The address of the wallet where you want to send the money to. You can type random text here (if you are not interested in recovering the funds)
 </p><br/>
-            <b>Amount:</b> <input id="amount" type="text" v-model="amount" placeholder ="" class="border"><br/>
+            <b>Amount:</b> <input id="amount" type="text" v-model="amount" placeholder ="100" class="border"><br/>
             <p  class="smallFont">You can transfer any amount. Account balance is not checked in this demo. Have at it</p><br/>
            
         </form>
@@ -89,14 +89,14 @@ export default {
       this.coin = this.$store.getters.getCoin;
       console.log("CreateTransaction - Coin in the store: ", this.coin.miningReward );
 
-       //this.keys = this.$route.params.keys;
-       //console.log("CreateTransaction - keys: ", this.keys)
-
       this.keys = this.$store.getters.getKeys;
-      //console.log("CreateTransaction - Our keys to the castle: ", this.keys)
   
   }
 }//export
 </script>
 <style scoped>
+input[type="text"] {
+    box-sizing: border-box;
+    padding-left: 10px;
+}
 </style>

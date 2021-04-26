@@ -8,18 +8,18 @@
                   color="indigo" 
                   @click="closeMe()">Exit
         </v-btn>
-    <h1>Pending Transactions</h1>
+    <h3  class="myIndigo">Pending Transactions</h3>
     <v-row>
     <v-responsive>
       <div class="task"> 
         Current Transaction ready to mined (added to the Blockchain):<br/><br/>
         <p class="wrap">
-          To: {{tx.toAddress}} <br/>
+          <b>To:</b> {{tx.toAddress}} <br/>
         </p>
         <p class="wrap">
-          From: {{tx.fromAddress}}<br/>
+          <b>From</b> {{tx.fromAddress}}<br/>
         </p>
-        Amount: {{tx.amount}}<br/>
+        <b>Amount</b>: {{tx.amount}}<br/>
       </div>
 
     </v-responsive> 
