@@ -1,7 +1,7 @@
 <template>
   <div class="animated fadeIn">
     <v-btn class="right" @click="closeMe">X</v-btn>
-    <h1>List Transactions page</h1>adsf
+    <h1>List Transactions page</h1>
     {{transactions}}
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
         console.log("selected block: ", this.block );
 
         this.coin = this.$store.getters.getCoin;
-        console.log("List Transactions- Coin in the store: ", this.coin.miningReward );
 
         this.chain = this.coin.chain;
         //console.log()

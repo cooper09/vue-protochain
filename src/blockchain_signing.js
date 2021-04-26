@@ -23,15 +23,13 @@ class Transaction {
         //check public key to make sure we have the right wallet
     
         // cooper s - this is supposed to work but doesn't - why?
-     if(keySignature.getPublic('hex') !== this.fromAddress ) {
+    /* if(keySignature.getPublic('hex') !== this.fromAddress ) {
             throw new Error("This wallet cannot sign this transaction. Sorry!")
         }//end if
-        
+        */
         const hashTx = this.calculateHash();
-        //cooper s - for testing purposes only...be sure to add this back later
         const signature = keySignature.sign(hashTx, 'base64');
         this.signature = signature.toDER('hex');
-        //this.signature = "1234567"
 
     }//end signTransaction
 
@@ -43,12 +41,9 @@ class Transaction {
             throw new Error ('This Transaction has not been signed')
         }
 
-        /* cooper s - add this back when ready
         const publicKey = ec.keyFromPublic(this.fromAddress, 'hex');
 
         return publicKey.verify(this.calculateHash(), this.signature );
-        */
-       return true
 
     }//end isValid
 
@@ -130,7 +125,7 @@ class Blockchain {
     }//end minePendingTransactions
   
     addTransaction(transaction) {
-        console.log("Adding transaction to the chain: ", transaction.fromAddress, " toAddress: ", transaction.toAddress )
+        console.log("Adding transaction to the chain: ", transaction )
         if (!transaction.fromAddress || !transaction.toAddress ) {
             throw new Error('Transaction must include to and from address')
         }//end if

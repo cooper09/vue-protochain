@@ -1,37 +1,59 @@
 <template>
-  <div class="animated fadeIn">
-    <v-btn class="right" @click="closeMe">X</v-btn>
-    <h1>Settings page</h1>
-    <div>
-      <form  @submit="submitSettings()">
+  <v-container   class="animated fadeIn container">
+       <span class="right"><v-btn                 
+                class="ma-2"
+                outlined
+                raised
+                primary @click="exitPage()">Exit</v-btn></span>
+   <h3>Settings</h3>
+   <p>Control how the blockchain behaves when new transactions or blocks are created. Changes are automatically saved.</p>
+  
+    <v-container>
+        <form  @submit="submitSettings()">
             Difficulty: <input type="text" v-model="difficulty" placeholder ="2" class="border"><br/>
-            
+            <p class="smallFont ">Difficulty controls how long the mining process takes. Higher numbers will make mining a lot slower!
+Default: 2</p><br/>
             Mining Reward: <input type="text" v-model="reward" placeholder ="100" class="border"><br/>
+            <p class="smallFont">How many "coins" a miner receives for successfully creating a new block for the chain.
+Default: 100
+</p>
  
         </form>
-        <v-btn @click="submitSettings">Submit</v-btn>
-    </div>
+            <div>
+              <v-btn
+                class="ma-2"
+                outlined
+                raised
+                primary
+                color="indigo"
+                @click="submitSettings()"
+              >
+                Submit
+              </v-btn>
+        </div>
+    </v-container>
 
-  </div>
+  </v-container>
 </template>
+
 <script>
 export default {
-  name: 'Settings',
   data () {
-    return {
-      difficulty: '',
-      reward: '100'
-    }
+      return {
+          difficulty: '',
+          reward: ''
+      }
   },
   methods: {
-    closeMe(){
-      this.$router.push('/');
+    exitPage() {
+      this.$router.push('/')
     },
-    submitSettings() {
-      console.log("Submit Settings");
+    submitSettings(e) {
+        e.preventDefault();
+        console.log("Submit settings")
     }
-  }
-}//export
+  }//end methods
+};//end export
 </script>
 <style scoped>
 </style>
