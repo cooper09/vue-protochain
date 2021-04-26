@@ -1,9 +1,32 @@
 <template>
   <div class="animated fadeIn">
-    <v-btn class="closeBtn" @click="closeMe">X</v-btn>
+
+        <v-btn class="btn right" 
+                  outlined
+                  raised
+                  primary
+                  color="indigo" 
+                  @click="closeMe()">Exit
+        </v-btn>
     <h1>Pending Transactions page</h1>
-    Current Transaction: {{tx}}
-     <v-btn  @click="beginMining()">Start Mining</v-btn>
+    <v-row>
+    <v-responsive> 
+      Current Transaction: {{tx}}
+    </v-responsive> 
+    </v-row>
+
+      <div>
+              <v-btn
+                class="ma-2"
+                outlined
+                raised
+                primary
+                color="indigo"
+                @click="beginMining()"
+              >
+                Start Mining
+              </v-btn>
+        </div>
 
     </div>
 </template>
