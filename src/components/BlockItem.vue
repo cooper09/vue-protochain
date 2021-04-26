@@ -3,7 +3,7 @@
   <v-container class="animated fadeIn">
     <v-card class="pa-1 margins" max-width="300" min-height="400">
       <v-responsive class="pt-4"> 
-  <!--     <center><img src="../logo.png" width="35"/></center> -->
+      <center><img src="../logo.png" width="35"/></center> 
       </v-responsive>
         <h3 class="myIndigo">Block</h3>   {{block.index}} 
          <v-card-text>
