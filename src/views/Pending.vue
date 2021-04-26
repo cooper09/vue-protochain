@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+//import {ServerTable, ClientTable, Event} from 'vue-tables-2';
 export default {
   name: 'Pending',
   data() {
