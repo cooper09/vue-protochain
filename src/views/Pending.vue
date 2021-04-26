@@ -59,19 +59,19 @@ export default {
       this.$router.push('/');
     },
     beginMining() {
-        console.log("Time to go to work!")
+      console.log("Time to go to work: ", this.tx  )
         // see if I can send an event up the chain....
         //this,$emit('begin-minin', this.tx )
           
-  this.coin.addTransaction(this.tx);
+      this.coin.addTransaction(this.tx);
 
     //mine up the new transaction in its own block
     console.log("\n Starting up the 7 dwarfs...");
 
-    const walletPublicAddr = "12334"
+    const walletPublicAddr = this.keys; 
     this.coin.minePendingTransactions(walletPublicAddr);
                 
-  console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(walletPublicAddr));
+  console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
 
   console.log("Final Chain: ", this.coin.chain )
 

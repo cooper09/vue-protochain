@@ -138,7 +138,7 @@ class Blockchain {
     }//end createTransaction
   
     getBalanceOfAddress (address) {
-        console.log("Address balance: ", address )
+        console.log("getBalanceOfAddress address: ", address )
         let balance = 0;
         for (const block of this.chain ) {
             for (const trans of block.transactions) {
