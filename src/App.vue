@@ -65,11 +65,11 @@ export default {
   async loadWeb3 () {
     console.log("loadWeb3");
     if (window.ethereum) {
-      console.log("loadWeb3: ethereum window");
+      console.log("loadWeb3: ethereum window: ", window.ethereum);
       window.web3 = new Web3(window.ethereum)
       await window.ethereum.enable();
     } else if (window.web3) {
-      console.log("loadWeb3: web3 window");
+      console.log("loadWeb3: web3 window: ", window.web3);
       window.web3 = new  Web3(window.web3.currentProvider)
     }//end iffy
     else {
