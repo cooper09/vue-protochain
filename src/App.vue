@@ -35,9 +35,10 @@
 </template>
 
 <script>
+import Web3 from 'web3';
 import HelloWorld from './components/HelloWorld';
 import {Blockchain} from './blockchain_signing.js';
-import {getKeys} from './helpers';
+import {getKeys,getWallet} from './helpers';
 
 export default {
   name: 'App',
@@ -46,7 +47,8 @@ export default {
   },
   data: () => ({
     //
-    keys:{}
+    keys:{},
+    wallet:{}
   }),
   methods: {
     appMethod (){
@@ -60,9 +62,23 @@ export default {
       //this.$router.push({name: 'Create Transactions', params: {keys: this.keys }})
       this.$router.push('/create')
     },
-  },//end methods
+  async loadWeb3 () {
+    console.log("loadWeb3");
+    if (window.ethereum) {
+      console.log("loadWeb3: ethereum window");
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable();
+    } else if (window.web3) {
+      console.log("loadWeb3: web3 window");
+      window.web3 = new  Web3(window.web3.currentProvider)
+    }//end iffy
+    else {
+      window.alert('Non-Ethereum browser detected! Please connect to MetaMask')
+    }//end iffy else
+  }//end loadWeb3
+},//end methods
 
-  created () {
+  async created () {
     console.log(' AppVue - Create new test class')
 
   // create blockchain class
@@ -75,8 +91,15 @@ export default {
     this.keys = getKeys();
     console.log("App - Our Keys: ", this.keys);
     this.$store.commit('setKeys', this.keys);
-    }//end created
-};
+
+  await this.loadWeb3();
+    
+    //this.wallet =  getWallet();
+    //console.log("App create wallet: ",  this.wallet );
+    
+  }//end created
+
+};//end exports
 </script>
 <style>
 body {

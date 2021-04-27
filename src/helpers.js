@@ -1,4 +1,6 @@
 
+import Web3 from 'web3';
+
 //slideshow.js
 export const doSomething = (n)=>{
     return(" I hear and I obey!!");
@@ -27,3 +29,7 @@ export const getKeys= () => {
     }
     return keysObj;
   }//end getKeys
+
+  export const getWallet = ()=>{
+    return("Lets connect to an external wallet");
+}
