@@ -69,7 +69,7 @@ export default {
     console.log("\n Starting up the 7 dwarfs...");
 
     const walletPublicAddr = this.keys; 
-    this.coin.minePendingTransactions(walletPublicAddr);
+    this.coin.minePendingTransactions(walletPublicAddr, this.tx.amount);
                 
   console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
 

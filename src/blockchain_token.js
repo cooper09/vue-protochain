@@ -41,7 +41,7 @@ class Transaction {
         return sha256(this.fromAddress + this.toAddress + this.amount).toString();
     }//end calculateHash
 
-    signTransaction(keySignature ){
+    signTransaction(keySignature, data ){
         console.log("signTransaction: ", keySignature.getPublic('hex') )
         //check public key to make sure we have the right wallet
     
@@ -53,6 +53,8 @@ class Transaction {
         const hashTx = this.calculateHash();
         const signature = keySignature.sign(hashTx, 'base64');
         this.signature = signature.toDER('hex');
+
+        alert("amount for this tx: " ,this.amount);
 
     }//end signTransaction
 
@@ -73,13 +75,13 @@ class Transaction {
  }//end Transaction
   
  class Block {
-    constructor (timestamp, transactions, previousHash ='', data) {
+    constructor (timestamp, transactions, previousHash ='', amt) {
         //this.index = index;
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.previousHash = previousHash;
         this.hash = this.createHash();
-        this.data = data;
+        this.data = amt;
         //add nonce for mining
         this.nonce = 0;
     }
@@ -133,10 +135,10 @@ class Blockchain {
     // create new block
   
     //Instead of mining block by block, queue them up as transactions and go from there...
-    minePendingTransactions (miningRewardAddress) {
-        
+    minePendingTransactions (miningRewardAddress, data) {
+        console.log("Blockchain.minePendingTransactions: ", data )
         //newBlock.previousHash = this.getLatestBlock().hash;
-        let block = new Block(Date.now(), this.pendingTransactions);
+        let block = new Block(Date.now(), this.pendingTransactions, {amount: 100});
         block.data = data;
         block.previousHash = this.getLatestBlock().hash;
         block.mineBlock(this.difficulty);
