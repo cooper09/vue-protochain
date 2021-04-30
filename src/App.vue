@@ -37,7 +37,7 @@
 <script>
 import Web3 from 'web3';
 import HelloWorld from './components/HelloWorld';
-import {Blockchain} from './blockchain_signing.js';
+import {Blockchain} from './blockchain_token.js';
 import {getKeys,getWallet} from './helpers';
 
 export default {

@@ -7,7 +7,7 @@
    <h3 class="myIndigo">Create Transaction </h3>
   <p>Transfer some tokens/coins to someone!</p>
     <v-container>
-        <form  @submit="submitTransaction()">
+        <form  @submit="submitTransaction()">gsdf
           <br/><br/>
             <b>From Address:</b>  <input id="from" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly"><br/>
             <p  class="smallFont">This is your wallet address. You cannot change it because you can only spend your own coins.</p>
@@ -63,7 +63,7 @@ export default {
       const walletKey = this.keys.walletKey;
       const walletPublicAddr = this.keys.walletPublicAddr;
 
-      const newTx = new Transaction(walletPublicAddr,this.keys.publicKey, 100);
+      const newTx = new Transaction(walletPublicAddr,this.keys.publicKey, this.amount );
       console.log("our New transaction: ", newTx );
 
   //sign transaction with the private key
