@@ -25,7 +25,7 @@
       <router-view></router-view>
         <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="consumerPage()">Enjoy</v-btn></span>
         <span><v-btn class="btn right" outlined raised primary color="indigo" @click="providerPage()">Upload</v-btn></span>
-          
+        <span><v-btn class="btn" outlined raised primary color="indigo" @click="showBlockChain()">Admin</v-btn></span>
     </v-content>
     <v-content transition="slide-x-transition">
 
@@ -39,6 +39,7 @@
 import Web3 from 'web3';
 import Consumer from './views/Consumer';
 import Provider from './views/Provider';
+import HelloWorld from './components/HelloWorld';
 import {Blockchain} from './blockchain_token.js';
 import {getKeys,getWallet} from './helpers';
 
@@ -46,7 +47,8 @@ export default {
   name: 'App',
   components: {
     Consumer,
-    Provider
+    Provider,
+    HelloWorld
   },
   data: () => ({
     //
@@ -65,6 +67,9 @@ export default {
       //this.$router.push({name: 'Create Transactions', params: {keys: this.keys }})
       this.$router.push('/provider')
     },
+  showBlockChain () {
+    this.$router.push('/blockchain')
+  },
   async loadWeb3 () {
     console.log("loadWeb3");
     if (window.ethereum) {

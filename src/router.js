@@ -9,6 +9,8 @@ import Pending from './views/Pending.vue'
 import Consumer from './views/Consumer.vue'
 import Provider from './views/Provider.vue'
 
+import HelloWorld from './components/HelloWorld';
+
 Vue.use(Router)
 
 export default new Router({
@@ -49,9 +51,9 @@ export default new Router({
       props: true
     },
     {
-      path: '/pending',
-      name: 'Pending Transactions',
-      component: Pending
+      path: '/blockchain',
+      name: 'Show Blockchain',
+      component: HelloWorld
     }
   ]
 })
