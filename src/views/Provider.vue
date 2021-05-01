@@ -56,9 +56,18 @@ export default {
     mintCoin() {
         console.log("Mint Coin for the provider:", this.coin);
         console.log("Provider mintcoin - Our keys to the castle: ", this.keys)
+        
+        // mint one hundred token and transfer 
         const token = new Token();
         console.log("New Token: ", token);
-        token.transfer(this.keys, 100)
+        token.transfer(this.keys, 100);
+
+        //create transaction add this to blockchain
+        // 1) assign content a unique hash
+        // 2) add metadata transaction block
+
+        //make sure goodies get to where their going
+        //ipfs or whatever
     }
   },//end methods
 }//export

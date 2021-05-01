@@ -1,4 +1,4 @@
-/* Wallet/Signed Transactions Blockchain
+/* Wallet/Token Blockchain
     creates blockchain with simple proof-of-work, transactions queues and signed transactions
 */
 const { toExponential } = require('core-js/fn/number/epsilon');
