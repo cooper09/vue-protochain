@@ -15,11 +15,15 @@ class Token {
         this.name = "MyToken";
         this.symbol = "MTOK";
         this.totalSubpply = 10000000000000000000;
+        console.log("Token constructor...")
     }//end constructor
 
-    transfer() {
-        console.log("Transfer tokens...")
+
+  transfer(toAddress, amount) {
+       console.log("Token.transfer: ", amount , " to: ", toAddress)
+        return true;
     }
+    
     approval(){
         console.log('transfer approval');
     }
@@ -241,3 +245,4 @@ class Blockchain {
   
  module.exports.Blockchain = Blockchain;
  module.exports.Transaction = Transaction;
+ module.exports.Token = Token;

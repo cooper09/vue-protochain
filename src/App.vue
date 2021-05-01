@@ -16,19 +16,20 @@
     </v-app-bar>
     <v-content   class="animated fadeIn">
 
-    <h2 class="myIndigo">Proto-Chain Blockchain</h2>
-    Each card represents a block on the uploaded blockchain. Click "Show Transactions" to see the transactions stored inside.
+    <h2 class="myIndigo">Proto-Moloch</h2>
+      You can upload content (video, audio, nft ) or you can enjoy content...help yourself.
     <p></p>
     <p class="wrap m">
         <span class="myIndigo"><b>Wallet (Public) Address:</b></span> {{keys.publicKey}}
     </p>
-    
-         <router-view></router-view>
-          <span><v-btn class="btn right" outlined raised primary color="indigo" @click="createPage()">Create Transaction</v-btn></span>
-          <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="settingsPage()">Settings</v-btn></span>
+      <router-view></router-view>
+        <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="consumerPage()">Enjoy</v-btn></span>
+        <span><v-btn class="btn right" outlined raised primary color="indigo" @click="providerPage()">Upload</v-btn></span>
+          
     </v-content>
     <v-content transition="slide-x-transition">
-            <HelloWorld/> 
+
+
     </v-content>
 
   </v-app>
@@ -36,14 +37,16 @@
 
 <script>
 import Web3 from 'web3';
-import HelloWorld from './components/HelloWorld';
-import {Blockchain} from './blockchain_signing.js';
+import Consumer from './views/Consumer';
+import Provider from './views/Provider';
+import {Blockchain} from './blockchain_token.js';
 import {getKeys,getWallet} from './helpers';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Consumer,
+    Provider
   },
   data: () => ({
     //
@@ -54,13 +57,13 @@ export default {
     appMethod (){
       console.log('appMethod at our service...')
     },
-     settingsPage() {
+  consumerPage() {
     console.log("settings page")
-      this.$router.push('/settings')
+      this.$router.push('/consumer')
     },
-  createPage(){
+  providerPage(){
       //this.$router.push({name: 'Create Transactions', params: {keys: this.keys }})
-      this.$router.push('/create')
+      this.$router.push('/provider')
     },
   async loadWeb3 () {
     console.log("loadWeb3");
