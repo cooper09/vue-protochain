@@ -43,7 +43,8 @@
   </div>
 </template>
 <script>
-import {Token} from '../blockchain_token.js';
+
+import {Token, Transaction} from '../blockchain_token.js';
 import {createId} from '../helpers.js';
 export default {
 
@@ -81,6 +82,42 @@ export default {
         //make sure goodies get to where their going
         //ipfs or whatever
 
+    //retrieve our public (walletPublicAddr) and  () key
+      const walletKey = this.keys.walletKey;
+      const walletPublicAddr = this.keys.walletPublicAddr;
+      
+      //create a new transaction to transfer Tokens to the provider
+        const newTx = new Transaction(walletPublicAddr,this.keys.publicKey, 300);
+        console.log("our New transaction: ", newTx );
+
+    //sign transaction with the private key
+      newTx.signTransaction(walletKey); 
+      console.log("Consumer - Signed transaction: ", newTx.signature );
+
+      console.log("Time to go to work: ", newTx )
+        // see if I can send an event up the chain....
+        //this,$emit('begin-minin', this.tx )
+          
+      this.coin.addTransaction(newTx);
+
+    //mine up the new transaction in its own block
+    console.log("\n Starting up the 7 dwarfs...");
+
+    // Prepare the smart contract data object
+    // 1) video title
+    // 2) content provider
+
+    console.log("Create the NFT object: ")
+
+    const nftObj = {
+      id: this.hash,
+      title: this.title,
+      location: "https://www.youtube.com/embed/3KIW5zUemvk",
+      provider: this.provider,
+      type: "video"
+    }
+
+    this.coin.minePendingTransactions(this.keys, nftObj);
 
     // move to the bottom
         console.log('\n Provider.mintCoin - Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
