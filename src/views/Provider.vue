@@ -2,7 +2,7 @@
   <div class="animated fadeIn">
     <v-btn class="closeBtn" @click="closeMe">X</v-btn>
     <h1>Content Provider</h1>
-    Current Balance: {{balance}}
+    Current Balance: {{balance}}test
       <v-tabs>
         <v-tab @click="openForm()">Video</v-tab>
         <v-tab>Audio</v-tab>
@@ -11,14 +11,19 @@
         <v-container>
         <form >
           <br/><br/>
-            <b>Your Adderss:</b>  <input id="provider" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly"><br/>
+            <b>Your Address:</b>  <input id="provider" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly" width="60"><br/>
             <p  class="smallFont">This is your wallet address. You cannot change it because you can only spend your own coins.</p>
             <br/>
-            <b>To Address:</b> <input id="to" type="text" v-model="to" placeholder ="0x000" class="border"><br/>
-            <p  class="smallFont">The address of the wallet where you want to send the money to. You can type random text here (if you are not interested in recovering the funds)
-</p><br/>
-            <b>Amount:</b> <input id="amount" type="text" v-model="amount" placeholder ="100" class="border"><br/>
-            <p  class="smallFont">You can transfer any amount. Account balance is not checked in this demo. Have at it</p><br/>
+            <b>Identifier:</b> <input id="id" type="text" v-model="hash" placeholder ="0x000" class="border" readonly="readonly"><br/>
+            <p  class="smallFont">Your content's unique identifier</p><br/>
+            <b>Title:</b> <input id="title" type="text" v-model="title" placeholder ="" class="border" width="90"><br/>
+            <p  class="smallFont">If you have a specific title you want to use</p><br/>
+
+            <b>Content Location:</b> <input id="location" type="text" v-model="location" placeholder ="File Location" class="border"><br/>
+            <p  class="smallFont">Your content's location</p><br/>
+
+            <b>Provider:</b> <input id="provider" type="text" v-model="provider" placeholder ="" class="border"><br/>
+            <p  class="smallFont">Your content's provider/artist/owner</p><br/>
            
         </form>
         <div>
@@ -39,6 +44,7 @@
 </template>
 <script>
 import {Token} from '../blockchain_token.js';
+import {createId} from '../helpers.js';
 export default {
 
   data() {
@@ -48,7 +54,11 @@ export default {
       from:'',
       to: '',
       amount: '',
-      balance: 0
+      balance: 0,
+      hash: "",
+      title: "The Rise and Fall of Pittsburgh",
+      location: "ipfs//File",
+      provider: "Acme Video"
     }
   },
   methods: {
@@ -71,10 +81,27 @@ export default {
         //make sure goodies get to where their going
         //ipfs or whatever
 
-        console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
+
+    // move to the bottom
+        console.log('\n Provider.mintCoin - Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
         this.balance = this.coin.getBalanceOfAddress(this.keys);
+    
     }//end  mintcoin
   },//end methods
+    created () {
+    //every module should have access to the same chain and keys
+
+      console.log("Provider - Begin CreateTransaction!");
+      this.coin = this.$store.getters.getCoin;
+      console.log("Provider - Coin in the store: ", this.coin.miningReward );
+      this.keys = this.$store.getters.getKeys;
+
+    //Everything created here is an NFT so everything is assigned a unique identifier
+        this.hash = createId();
+
+        console.log(" Our new Id: ", this.hash )
+  
+  }//end created
 }//export
 </script>
 <style scoped>

@@ -6,6 +6,13 @@ export const doSomething = (n)=>{
     return(" I hear and I obey!!");
 }
 
+export const createId = ()=> {
+
+  const hash = "123456789";
+  return hash;
+}
+
+
 export const getKeys= () => {
 
     //Creat a wallet to "sign" any transaction
@@ -30,6 +37,4 @@ export const getKeys= () => {
     return keysObj;
   }//end getKeys
 
-  export const getWallet = ()=>{
-    return("Lets connect to an external wallet");
-}
+ 

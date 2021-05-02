@@ -22,7 +22,7 @@
     </p>
     <div class="videos">
       <ul class="videos__list">
-        <li v-for="(video, index) in videos" :key="index" class="videos__item" @click="playGoodie()">
+        <li v-for="(video, index) in videos" :key="index" class="videos__item" @click="playGoodie(video)">
           <LazyYoutubeVideo
             :src="video.url"
             :preview-image-size="video.previewImageSize"
@@ -71,9 +71,10 @@ export default {
     showContent(){
       console.log("Show content...")
     },
-    playGoodie() {
+    playGoodie(video) {
       console.log("Consumer.playGoodie: ", this.coin);
       console.log("Consumer.playGoodies - keys: ", this.keys)
+      console.log("video in question: ", video )
       /* 
         1) create transaction between the current wallet the provider wallet. 
         2) send transactoin to Pending for normal "procedure"...
@@ -100,7 +101,18 @@ export default {
           //mine up the new transaction in its own block
     console.log("\n Starting up the 7 dwarfs...");
 
-    this.coin.minePendingTransactions(this.keys);
+    // Prepare the smart contract data object
+    // 1) video title
+    // 2) content provider
+
+    console.log("Can I see the video object: ", video)
+
+    const dataObj = {
+      title: video.title,
+      id: video.hash,
+    }
+
+    this.coin.minePendingTransactions(this.keys, dataObj);
 
     console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
     this.balance = this.coin.getBalanceOfAddress(this.keys);
@@ -119,7 +131,7 @@ export default {
 
       this.keys = this.$store.getters.getKeys;
   
-  }//end playGoodie
+  }//end created
 }//export
 </script>
 <style scoped>

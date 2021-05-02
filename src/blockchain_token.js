@@ -129,7 +129,12 @@ class Blockchain {
     //create genesis block
     createGenesisBlock () {
         const time = new Date().getTime();
-        return new Block( time ,'Genesis Block' , '0', 'Genesis Block' );
+    
+    const dataObj = {
+        title: 'Genesis Block' ,
+        id: "Hash"
+    }
+        return new Block( time ,'Genesis Block' , '0', dataObj );
     }
     //get last block
     getLatestBlock() {
