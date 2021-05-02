@@ -5,6 +5,7 @@
                   primary
                   color="indigo"  @click="closeMe()">Exit</v-btn></span>
     <h1>Consumer Page</h1>
+    Your balance: {{balance}}
     <br/><br/>
     <v-tabs>
         <v-tab @click="showContent()">Video</v-tab>
@@ -62,8 +63,9 @@ export default {
       keys: {},
       from:'',
       to: '',
-      amount: ''
-    };//end return
+      amount: '',
+      balance: 0
+   };//end return
   },//end data
   methods: {
     showContent(){
@@ -100,6 +102,8 @@ export default {
 
     this.coin.minePendingTransactions(this.keys);
 
+    console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
+    this.balance = this.coin.getBalanceOfAddress(this.keys);
     },
     foo() {
       console.log("Video has loaded...");

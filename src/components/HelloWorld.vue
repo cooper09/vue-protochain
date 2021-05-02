@@ -1,6 +1,9 @@
 <template>
   <v-container class="animated fadeIn ">
-
+                <span class="right"><v-btn                   outlined
+                  raised
+                  primary
+                  color="indigo"  @click="closeMe()">Exit</v-btn></span>
      <div >
               <v-layout row wrap >
                 <v-flex  xs12 sm6 md4 lg3 :key="block.id" v-for="block in blocks" class="blocks">
@@ -53,6 +56,9 @@ export default {
     showTxs (block){
       console.log("Show transactions for: ", block);
       this.$router.push({name: 'List Transactions', params: {foo: block }})
+    },
+    closeMe() {
+      this.$router.push('/')
     }
   },//end methods
     created () {

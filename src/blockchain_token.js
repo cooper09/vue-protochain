@@ -58,7 +58,7 @@ class Transaction {
         const signature = keySignature.sign(hashTx, 'base64');
         this.signature = signature.toDER('hex');
 
-        alert("amount for this tx: " ,this.amount);
+        console.log("amount for this tx: " ,this.amount);
 
     }//end signTransaction
 
