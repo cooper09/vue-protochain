@@ -2,7 +2,7 @@
   <div class="animated fadeIn">
     <v-btn class="closeBtn" @click="closeMe">X</v-btn>
     <h1>Content Provider</h1>
-    Current Balance: {{balance}}test
+    Current Balance: {{balance}}
       <v-tabs>
         <v-tab @click="openForm()">Video</v-tab>
         <v-tab>Audio</v-tab>
@@ -55,7 +55,7 @@ export default {
       from:'',
       to: '',
       amount: '',
-      balance: 0,
+      balance: '',
       hash: "",
       title: "Privi Promo",
       location: "ipfs//File",
@@ -123,10 +123,9 @@ export default {
     // move to the bottom
         console.log('\n Provider.mintCoin - Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
         this.balance = this.coin.getBalanceOfAddress(this.keys);
+        console.log('\n Provider.mintCoin - Wallet Balance: ', this.balance);
 
-            //set the new transaction to the store
-
-    
+        alert("Your content has been created!")
     }//end  mintcoin
   },//end methods
     created () {

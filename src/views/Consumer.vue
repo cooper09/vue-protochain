@@ -29,10 +29,10 @@
             :aspect-ratio="video.aspectRatio"
             :thumbnail-listeners="{ load: foo }"
           />
-          {{nft}}
-          <p>Video: {{video.title}}</p>
-          <p>Content Address: {{video.address}}</p>
-          <p>Identifier: {{video.hash}}</p>
+          <br/><br/>
+          <p><b>Video:</b> {{video.title}}</p>
+          <p><b>Content Provider:</b> {{video.address}}</p>
+          <p class="wrap"><b>Identifier:</b> {{video.hash}}</p>
         </li>
       </ul>
     </div>
@@ -89,12 +89,10 @@ export default {
       console.log("Consumer - Signed transaction: ", newTx.signature );
 
       console.log("Time to go to work: ", newTx )
-        // see if I can send an event up the chain....
-        //this,$emit('begin-minin', this.tx )
           
       this.coin.addTransaction(newTx);
 
-          //mine up the new transaction in its own block
+    //mine up the new transaction in its own block
     console.log("\n Starting up the 7 dwarfs...");
 
     // Prepare the smart contract data object
@@ -135,7 +133,7 @@ export default {
           url: "https://www.youtube.com/embed/3KIW5zUemvk",
           previewImageSize: "maxresdefault", 
           title: this.nft.title,
-          address: this.nft.provideer,
+          address: this.nft.provider,
           hash: this.nft.id,
       }
        this.videos.push(nftObj);
