@@ -29,6 +29,7 @@
             :aspect-ratio="video.aspectRatio"
             :thumbnail-listeners="{ load: foo }"
           />
+          {{nft}}
           <p>Video: {{video.title}}</p>
           <p>Content Address: {{video.address}}</p>
           <p>Identifier: {{video.hash}}</p>
@@ -50,13 +51,7 @@ export default {
    data() {
     return {
       videos: [
-        {
-          url: "https://www.youtube.com/embed/3KIW5zUemvk",
-          previewImageSize: "maxresdefault", 
-          title: "Privi Protocol",
-          address: "0x00",
-          hash: "0x00"
-        }
+
       ],
       tx:{},
       coin: {},
@@ -64,7 +59,8 @@ export default {
       from:'',
       to: '',
       amount: '',
-      balance: 0
+      balance: 0,
+      nft: {}
    };//end return
   },//end data
   methods: {
@@ -130,6 +126,19 @@ export default {
       console.log("Consumer - Coin in the store: ", this.coin.miningReward );
 
       this.keys = this.$store.getters.getKeys;
+
+      //get the current demo NFT. For now we're only testing one video at a time...
+      this.nft = this.$store.getters.getNft;
+      console.log("Consumer - current NFT: ", this.nft )
+      
+      const nftObj = {
+          url: "https://www.youtube.com/embed/3KIW5zUemvk",
+          previewImageSize: "maxresdefault", 
+          title: this.nft.title,
+          address: this.nft.provideer,
+          hash: this.nft.id,
+      }
+       this.videos.push(nftObj);
   
   }//end created
 }//export

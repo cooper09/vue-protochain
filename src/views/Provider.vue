@@ -57,7 +57,7 @@ export default {
       amount: '',
       balance: 0,
       hash: "",
-      title: "The Rise and Fall of Pittsburgh",
+      title: "Privi Promo",
       location: "ipfs//File",
       provider: "Acme Video"
     }
@@ -117,11 +117,15 @@ export default {
       type: "video"
     }
 
+    this.$store.commit ('setNft', nftObj );
     this.coin.minePendingTransactions(this.keys, nftObj);
 
     // move to the bottom
         console.log('\n Provider.mintCoin - Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
         this.balance = this.coin.getBalanceOfAddress(this.keys);
+
+            //set the new transaction to the store
+
     
     }//end  mintcoin
   },//end methods
@@ -134,7 +138,7 @@ export default {
       this.keys = this.$store.getters.getKeys;
 
     //Everything created here is an NFT so everything is assigned a unique identifier
-        this.hash = createId();
+        this.hash = createId(this.coin.miningReward);
 
         console.log(" Our new Id: ", this.hash )
   

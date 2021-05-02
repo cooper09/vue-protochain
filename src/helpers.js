@@ -1,16 +1,23 @@
 
 import Web3 from 'web3';
+const sha256 = require('crypto-js/sha256');
 
 //slideshow.js
 export const doSomething = (n)=>{
     return(" I hear and I obey!!");
 }
 
-export const createId = ()=> {
+export const createId = (data)=> {
 
-  const hash = "123456789";
-  return hash;
-}
+
+  const timestamp = new Date().getTime();
+  const abc = "abcdefghijklmnopqrstuvwxyz1234567890".split("");
+    let token=""; 
+    for(let i=0;i<32;i++){
+         token += abc[Math.floor(Math.random()*abc.length)];
+    }
+  return sha256(token + timestamp + JSON.stringify(data)).toString();
+}//end createId
 
 
 export const getKeys= () => {

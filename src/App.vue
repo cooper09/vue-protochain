@@ -142,4 +142,8 @@ body {
 .myIndigo {
   color: indigo;
 }
+input[type="text"] {
+    box-sizing: border-box;
+    padding-left: 10px;
+}
 </style>

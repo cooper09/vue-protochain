@@ -12,6 +12,13 @@ export default new Vuex.Store({
       from: "the kid",
       to: "my girl",
       amount: "20"
+    },
+    nft:{
+      id: "987654321",
+      title: "Dead men tell no tales",
+      location: "youube link",
+      provider: "me",
+      type: "video"
     }
   },//end state
   mutations: {
@@ -25,7 +32,12 @@ export default new Vuex.Store({
       console.log("Alass....Store mute - new Tx: ", data )
       state.newTx = data;
 //      alert("newTx has been updated: ")
+    },
+    setNft(state, data) {
+      console.log("Set  - new NFT: ", data )
+      state.nft = data; 
     }
+    
   },//end mutations
   actions: {
     setCoin ({commit}, data) {
@@ -37,11 +49,15 @@ export default new Vuex.Store({
     setNewTx  ({commit}, data) {
       console.log("Store action - new Tx: ", data )
       commit('setnewTx', data )
+    },
+    setNft ({commit}, data) {
+      commit('setNft', data )
     }
   },//end actions
   getters: {
     getCoin:  state => state.coinClass,
     getKeys: state => state.keys,
     getNewTx: state => state.newTx,
+    getNft: state => state.nft,
   }//end getters
 })
