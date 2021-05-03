@@ -1,7 +1,10 @@
 <template>
   <div class="animated fadeIn">
-    <v-btn class="closeBtn" @click="closeMe">X</v-btn>
-    <h1>Content Provider</h1>
+              <span class="right"><v-btn                   outlined
+                  raised
+                  primary
+                  color="indigo"  @click="closeMe()">Exit</v-btn></span>
+    <h3 class="myIndigo">Content Provider</h3>
     Current Balance: {{balance}}
       <v-tabs>
         <v-tab @click="openForm()">Video</v-tab>

@@ -4,7 +4,7 @@
                   raised
                   primary
                   color="indigo"  @click="closeMe()">Exit</v-btn></span>
-    <h1>Consumer Page</h1>
+    <h3 class="myIndigo">Consumer Page</h3>
     Your balance: {{balance}}
     <br/><br/>
     <v-tabs>
