@@ -118,7 +118,7 @@ export default {
       location: "https://www.youtube.com/embed/3KIW5zUemvk",
       provider: this.provider,
       type: "video"
-    }
+    }git 
 
     this.$store.commit ('setNft', nftObj );
     this.coin.minePendingTransactions(this.keys, nftObj);
