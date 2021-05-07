@@ -16,7 +16,7 @@
     </v-app-bar>
     <v-content   class="animated fadeIn">
 
-    <h2 class="myIndigo">Proto-Moloch</h2>
+    <h2 class="myIndigo">Proto-Moloch 2</h2>
       You can upload content (video, audio, nft ) or you can enjoy content...help yourself.
     <p></p>
     <p class="wrap m">
@@ -28,7 +28,7 @@
         <span><v-btn class="btn" outlined raised primary color="indigo" @click="showBlockChain()">Admin</v-btn></span>
     </v-content>
     <v-content transition="slide-x-transition">
-      <Guild />
+      <GuildComponent />
     </v-content>
 
   </v-app>
@@ -36,11 +36,14 @@
 
 <script>
 import Web3 from 'web3';
+
+import HelloWorld from './components/HelloWorld';
+import GuildComponent from './components/GuildComponent';
+
 import Consumer from './views/Consumer';
 import Provider from './views/Provider';
-import HelloWorld from './components/HelloWorld';
-import Guild from './components/Guild';
-import {Blockchain} from './blockchain_guild.js';
+
+import {Blockchain, Guild} from './blockchain_guild.js';
 import {getKeys,getWallet} from './helpers';
 
 export default {
@@ -49,7 +52,7 @@ export default {
     Consumer,
     Provider,
     HelloWorld,
-    Guild
+    GuildComponent
   },
   data: () => ({
     //
@@ -80,10 +83,10 @@ export default {
     } else if (window.web3) {
       console.log("loadWeb3: web3 window: ", window.web3);
       window.web3 = new  Web3(window.web3.currentProvider)
-    }//end iffy
+    }//end iffy 
     else {
       window.alert('Non-Ethereum browser detected! Please connect to MetaMask')
-    }//end iffy else
+    }//end iffy else  
   }//end loadWeb3
 },//end methods
 
@@ -92,19 +95,18 @@ export default {
 
   // create blockchain class
     const coin = new Blockchain ();
-    this.$store.commit('setCoin', coin)
+    const guild = new Guild(1,2,3,4);
+    this.$store.commit('setCoin', coin);
+    this.$store.commit('setGuild', guild);
     const newCoin = this.$store.getters.getCoin;
-    console.log("Block Coin in the store: ", newCoin.miningReward )
+    console.log("Block Coin in the store: ", newCoin )
 
     //get and store private and public keys
     this.keys = getKeys();
     console.log("App - Our Keys: ", this.keys);
-    this.$store.commit('setKeys', this.keys);
 
-  await this.loadWeb3();
-    
-    //this.wallet =  getWallet();
-    //console.log("App create wallet: ",  this.wallet );
+  //cooper s - be sure to put back when using MetaMask
+ //await this.loadWeb3();      
     
   }//end created
 

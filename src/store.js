@@ -8,6 +8,7 @@ export default new Vuex.Store({
     coinClass: {},
     currentChain: [],
     keys: {},
+    guild:{},
     newTx:{
       from: "the kid",
       to: "my girl",
@@ -16,7 +17,7 @@ export default new Vuex.Store({
     nft:{
       id: "987654321",
       title: "Dead men tell no tales",
-      location: "youube link",
+      location: "youtube link",
       provider: "me",
       type: "video"
     }
@@ -36,6 +37,10 @@ export default new Vuex.Store({
     setNft(state, data) {
       console.log("Set  - new NFT: ", data )
       state.nft = data; 
+    },
+    setGuild(state, data) {
+      console.log("Set  - new Guild: ", data )
+      state.guild = data; 
     }
     
   },//end mutations
@@ -52,6 +57,9 @@ export default new Vuex.Store({
     },
     setNft ({commit}, data) {
       commit('setNft', data )
+    },
+    setGuild ({commit}, data) {
+      commit('setGuild', data )
     }
   },//end actions
   getters: {
@@ -59,5 +67,6 @@ export default new Vuex.Store({
     getKeys: state => state.keys,
     getNewTx: state => state.newTx,
     getNft: state => state.nft,
+    getGuild: state => state.guild
   }//end getters
 })

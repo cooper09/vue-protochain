@@ -13,18 +13,19 @@ let data = "global data";
 class Guild {
     
     constructor () {
-        this.periodDuration = "1",
-        this.votingPeriod = "1",
-        this.gracePeriod = "1",
-        this.proposalDeposit="1",
-        this.processingReward="1"
+        console.log("Guild constructor...")
+        this.periodDuration = 0,
+        this.votingPeriod = 0,
+        this.gracePeriod = 0,
+        this.proposalDeposit=0,
+        this.processingReward=0
 
-        Member = {
+        let Member = {
             delegateKey: "0x00",
             shares: 100,
             exists: true
         }
-        Proposal = {
+        let Proposal = {
             proposer: "0x01",
             sponsor: "0x001",
             sharesRequested: 100,
@@ -32,19 +33,26 @@ class Guild {
             yesVotes: "",
             noVotes: "",
             details: "Make the world a better place..."
-        }
+        } 
+        this.members = [];
+        this.proposals = [];
+
     }//end constructor
 
+    submitMember(member) {
+        console.log("Guild - submit member: ", member)
+    }
+
     submitProposal () {
-        console.log("Submitting a proposal")
+        console.log("Guild - Submitting a proposal")
     }//end submitProposal
 
    submitVote () {
-       console.log("Submitting a Vote")
+       console.log("Guild - Submitting a Vote")
    } 
 
    processProposal() {
-       console.log("Process our proposal...")
+       console.log("Guild - Process our proposal...")
    }
 
     
@@ -292,3 +300,4 @@ class Blockchain {
  module.exports.Blockchain = Blockchain;
  module.exports.Transaction = Transaction;
  module.exports.Token = Token;
+ module.exports.Guild = Guild;

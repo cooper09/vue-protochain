@@ -4,11 +4,13 @@ import Home from './views/Home.vue'
 
 import Settings from './views/Settings.vue'
 import CreateTransaction from './views/CreateTransaction.vue'
+import CreateMember from './views/CreateMember.vue'
 import ListTransactions from './views/ListTransactions.vue'
 import Pending from './views/Pending.vue'
 import Consumer from './views/Consumer.vue'
 import Provider from './views/Provider.vue'
-
+import SubmitProposal from './views/SubmitProposal.vue'
+import ListProposals from './views/ListProposals.vue'
 import HelloWorld from './components/HelloWorld';
 
 Vue.use(Router)
@@ -54,6 +56,21 @@ export default new Router({
       path: '/blockchain',
       name: 'Show Blockchain',
       component: HelloWorld
+    },
+    {
+      path: '/addmember',
+      name: 'Add Member',
+      component: CreateMember
+    },
+    {
+      path: '/submitproposal',
+      name: 'Submit Proposal',
+      component: SubmitProposal
+    },
+    {
+      path: '/listproposals',
+      name: 'List Proposals',
+      component: ListProposals
     }
   ]
 })
