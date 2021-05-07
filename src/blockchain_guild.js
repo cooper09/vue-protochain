@@ -1,4 +1,4 @@
-/* Wallet/Signed Transactions Blockchain
+/* Wallet/Token Blockchain
     creates blockchain with simple proof-of-work, transactions queues and signed transactions
 */
 const { toExponential } = require('core-js/fn/number/epsilon');
@@ -10,16 +10,61 @@ const ec = new EC('secp256k1');
 //Universal Data Field
 let data = "global data";
 
+class Guild {
+    
+    constructor () {
+        this.periodDuration = "1",
+        this.votingPeriod = "1",
+        this.gracePeriod = "1",
+        this.proposalDeposit="1",
+        this.processingReward="1"
+
+        Member = {
+            delegateKey: "0x00",
+            shares: 100,
+            exists: true
+        }
+        Proposal = {
+            proposer: "0x01",
+            sponsor: "0x001",
+            sharesRequested: 100,
+            paymentToken: "MyTOK",
+            yesVotes: "",
+            noVotes: "",
+            details: "Make the world a better place..."
+        }
+    }//end constructor
+
+    submitProposal () {
+        console.log("Submitting a proposal")
+    }//end submitProposal
+
+   submitVote () {
+       console.log("Submitting a Vote")
+   } 
+
+   processProposal() {
+       console.log("Process our proposal...")
+   }
+
+    
+
+}//end Guild
+
 class Token {
     constructor () {
         this.name = "MyToken";
         this.symbol = "MTOK";
         this.totalSubpply = 10000000000000000000;
+        console.log("Token constructor...")
     }//end constructor
 
-    transfer() {
-        console.log("Transfer tokens...")
+
+  transfer(toAddress, amount) {
+       console.log("Token.transfer: ", amount , " to: ", toAddress)
+        return true;
     }
+    
     approval(){
         console.log('transfer approval');
     }
@@ -54,7 +99,7 @@ class Transaction {
         const signature = keySignature.sign(hashTx, 'base64');
         this.signature = signature.toDER('hex');
 
-        alert("amount for this tx: " ,this.amount);
+        console.log("amount for this tx: " ,this.amount);
 
     }//end signTransaction
 
@@ -125,7 +170,12 @@ class Blockchain {
     //create genesis block
     createGenesisBlock () {
         const time = new Date().getTime();
-        return new Block( time ,'Genesis Block' , '0', 'Genesis Block' );
+    
+    const dataObj = {
+        title: 'Genesis Block' ,
+        id: "Hash"
+    }
+        return new Block( time ,'Genesis Block' , '0', dataObj );
     }
     //get last block
     getLatestBlock() {
@@ -241,3 +291,4 @@ class Blockchain {
   
  module.exports.Blockchain = Blockchain;
  module.exports.Transaction = Transaction;
+ module.exports.Token = Token;

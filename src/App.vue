@@ -28,8 +28,7 @@
         <span><v-btn class="btn" outlined raised primary color="indigo" @click="showBlockChain()">Admin</v-btn></span>
     </v-content>
     <v-content transition="slide-x-transition">
-
-
+      <Guild />
     </v-content>
 
   </v-app>
@@ -40,7 +39,8 @@ import Web3 from 'web3';
 import Consumer from './views/Consumer';
 import Provider from './views/Provider';
 import HelloWorld from './components/HelloWorld';
-import {Blockchain} from './blockchain_token.js';
+import Guild from './components/Guild';
+import {Blockchain} from './blockchain_guild.js';
 import {getKeys,getWallet} from './helpers';
 
 export default {
@@ -48,7 +48,8 @@ export default {
   components: {
     Consumer,
     Provider,
-    HelloWorld
+    HelloWorld,
+    Guild
   },
   data: () => ({
     //

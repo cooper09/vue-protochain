@@ -1,10 +1,10 @@
 <template>
   <div>
   <v-container class="animated fadeIn">
-   <h3>Block</h3>   {{block.hash}} 
+   <h3>Guild</h3>   
            <v-btn
                @click="showTransactions(block.hash)">
-                  Show Transactions
+                  Become a Member
                 </v-btn>
   </v-container>
   </div><!-- end main div -->

@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import {Transaction} from '../blockchain_token.js';
+import {Transaction} from '../blockchain_guild.js';
 import Pending from './Pending';
 import LazyYoutubeVideo from "vue-lazy-youtube-video";
 export default {

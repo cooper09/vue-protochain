@@ -47,7 +47,7 @@
 </template>
 <script>
 
-import {Token, Transaction} from '../blockchain_token.js';
+import {Token, Transaction} from '../blockchain_guild.js';
 import {createId} from '../helpers.js';
 export default {
 
