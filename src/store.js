@@ -8,6 +8,7 @@ export default new Vuex.Store({
     coinClass: {},
     currentChain: [],
     keys: {},
+    currentBalance: 0,
     newTx:{
       from: "the kid",
       to: "my girl",
@@ -24,7 +25,10 @@ export default new Vuex.Store({
     setNewTx (state, data ){
       console.log("Alass....Store mute - new Tx: ", data )
       state.newTx = data;
-//      alert("newTx has been updated: ")
+    },
+     setBalance (state, data ){
+      console.log("Alass....Store mute - new Tx: ", data )
+      state.currentBalance = data;
     }
   },//end mutations
   actions: {
@@ -37,11 +41,16 @@ export default new Vuex.Store({
     setNewTx  ({commit}, data) {
       console.log("Store action - new Tx: ", data )
       commit('setnewTx', data )
+    },
+    setBalance ({commit}, data) {
+      console.log("Store action - balance: ", data )
+      commit('setBalance', data )
     }
   },//end actions
   getters: {
     getCoin:  state => state.coinClass,
     getKeys: state => state.keys,
     getNewTx: state => state.newTx,
+    getBalance: state => state.currentBalance
   }//end getters
 })

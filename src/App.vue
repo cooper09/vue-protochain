@@ -21,6 +21,7 @@
     <p></p>
     <p class="wrap m">
         <span class="myIndigo"><b>Wallet (Public) Address:</b></span> {{keys.publicKey}}
+        <p class="myIndigo"><b>Balance: </b> {{this.balance}} </p>
     </p>
     
          <router-view></router-view>
@@ -48,7 +49,8 @@ export default {
   data: () => ({
     //
     keys:{},
-    wallet:{}
+    wallet:{},
+    balance: null
   }),
   methods: {
     appMethod (){
@@ -92,10 +94,9 @@ export default {
     console.log("App - Our Keys: ", this.keys);
     this.$store.commit('setKeys', this.keys);
 
+    this.balance = this.$store.getters.getBalance
+
   await this.loadWeb3();
-    
-    //this.wallet =  getWallet();
-    //console.log("App create wallet: ",  this.wallet );
     
   }//end created
 
