@@ -7,12 +7,25 @@
           color="indigo" 
           @click="closeMe()">Exit
         </v-btn>
-    <h3  class="myIndigo">List of Proposals currently on the Block: </h3> <span><p class="wrap">goodie goes here</p></span>
+    <h3  class="myIndigo">List of Proposals currently on the Block: </h3>
+    <br/>
        <div v-for="proposal in proposals" :key="proposal.name">
-      <span class="transaction" > Proposal </span>
+      <span class="transaction" > Proposal</span>
+      
    <div class="tx">
         <p class="wrap"><b>Name: </b>{{proposal.name}}</p>
         <p class="wrap"><b>Proposal: </b>{{proposal.proposal}}</p>
+        <span><form>
+          <input type="radio" name="choice" value="yes"> Yes
+          <input type="radio" name="choice" value="no"> No
+        </form></span>Submit when ready...
+        <span><v-btn class="btn right" 
+          outlined
+          raisedI can 
+          primary
+          color="indigo" 
+          @click="submitVote()">Submit
+        </v-btn></span>
       </div> 
     </div> 
   </div>
@@ -32,8 +45,11 @@ export default {
   methods: {
     closeMe(){
       this.$router.push('/');
+    },
+    submitVote() {
+      alert("Your vote has been submitted")
     }
-  },
+  },//end methods
   created() {
     //First get the coin class..
 
