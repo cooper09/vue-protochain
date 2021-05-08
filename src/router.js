@@ -4,8 +4,14 @@ import Home from './views/Home.vue'
 
 import Settings from './views/Settings.vue'
 import CreateTransaction from './views/CreateTransaction.vue'
+import CreateMember from './views/CreateMember.vue'
 import ListTransactions from './views/ListTransactions.vue'
 import Pending from './views/Pending.vue'
+import Consumer from './views/Consumer.vue'
+import Provider from './views/Provider.vue'
+import SubmitProposal from './views/SubmitProposal.vue'
+import ListProposals from './views/ListProposals.vue'
+import HelloWorld from './components/HelloWorld';
 
 Vue.use(Router)
 
@@ -27,18 +33,18 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/settings',
-      name: 'settings',
+      path: '/consumer',
+      name: 'Consumer Page',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       //component: () => import(/* webpackChunkName: "settings" */ './views/Settings.vue')
-      component: Settings
+      component: Consumer
     },
     {
-      path: '/create',
-      name: 'Create Transaction',
-      component: CreateTransaction
+      path: '/provider',
+      name: 'Provider Page',
+      component: Provider
     },
     {
       path: '/transactions',
@@ -47,9 +53,24 @@ export default new Router({
       props: true
     },
     {
-      path: '/pending',
-      name: 'Pending Transactions',
-      component: Pending
+      path: '/blockchain',
+      name: 'Show Blockchain',
+      component: HelloWorld
+    },
+    {
+      path: '/addmember',
+      name: 'Add Member',
+      component: CreateMember
+    },
+    {
+      path: '/submitproposal',
+      name: 'Submit Proposal',
+      component: SubmitProposal
+    },
+    {
+      path: '/listproposals',
+      name: 'List Proposals',
+      component: ListProposals
     }
   ]
 })

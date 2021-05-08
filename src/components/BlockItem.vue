@@ -9,12 +9,13 @@
          <v-card-text>
                 <div class="subheading wrap">
                 <p class="text-wrap" >
-                   Hash: {{block.hash}}
+                   <b>Hash:</b> {{block.hash}}
                 </p>
                 </div>
-                <div text-wrap>Previous Hash: {{block.previousHash}}</div>
-                <div>Data: {{block.data }}</div>
-                <div>Timestamp: {{block.timestamp}}</div>
+                <div text-wrap><b>Previous Hash:</b> {{block.previousHash}}</div>
+                <div><b>Title:</b> {{block.data.title }}</div>
+                <div><b>Id: </b>{{block.data.id }}</div>
+                <div><b>Timestamp:</b> {{block.timestamp}}</div>
             </v-card-text>
               <v-card-actions>
                 <span class="right"><v-btn

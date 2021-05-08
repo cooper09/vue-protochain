@@ -1,4 +1,4 @@
-/* Wallet/Signed Transactions Blockchain
+/* Wallet/Token Blockchain
     creates blockchain with simple proof-of-work, transactions queues and signed transactions
 */
 const { toExponential } = require('core-js/fn/number/epsilon');
@@ -7,18 +7,94 @@ const sha256 = require('crypto-js/sha256');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 
+//Universal Data Field
+let data = "global data";
+
+class Guild {
+    
+    constructor () {
+        console.log("Guild constructor...")
+        this.periodDuration = 0,
+        this.votingPeriod = 0,
+        this.gracePeriod = 0,
+        this.proposalDeposit=0,
+        this.processingReward=0
+
+        let Member = {
+            delegateKey: "0x00",
+            shares: 100,
+            exists: true
+        }
+        let Proposal = {
+            proposer: "0x01",
+            sponsor: "0x001",
+            sharesRequested: 100,
+            paymentToken: "MyTOK",
+            yesVotes: "",
+            noVotes: "",
+            details: "Make the world a better place..."
+        } 
+        this.members = [];
+        this.proposals = [];
+
+    }//end constructor
+
+    submitMember(member) {
+        console.log("Guild - submit member: ", member)
+    }
+
+    submitProposal () {
+        console.log("Guild - Submitting a proposal")
+    }//end submitProposal
+
+   submitVote () {
+       console.log("Guild - Submitting a Vote")
+   } 
+
+   processProposal() {
+       console.log("Guild - Process our proposal...")
+   }
+
+    
+
+}//end Guild
+
+class Token {
+    constructor () {
+        this.name = "MyToken";
+        this.symbol = "MTOK";
+        this.totalSubpply = 10000000000000000000;
+        console.log("Token constructor...")
+    }//end constructor
+
+
+  transfer(toAddress, amount) {
+       console.log("Token.transfer: ", amount , " to: ", toAddress)
+        return true;
+    }
+    
+    approval(){
+        console.log('transfer approval');
+    }
+    transferFrom() {
+        console.log("Transfer From")
+    }
+
+}//end token
+
 class Transaction {
     constructor (fromAddress, toAddress, amount ){
         this.fromAddress = fromAddress;
         this.toAddress = toAddress;
         this.amount = amount;
+        this.data = amount;
     }//end constructor
   
     calculateHash() {
         return sha256(this.fromAddress + this.toAddress + this.amount).toString();
     }//end calculateHash
 
-    signTransaction(keySignature ){
+    signTransaction(keySignature, data ){
         console.log("signTransaction: ", keySignature.getPublic('hex') )
         //check public key to make sure we have the right wallet
     
@@ -30,6 +106,8 @@ class Transaction {
         const hashTx = this.calculateHash();
         const signature = keySignature.sign(hashTx, 'base64');
         this.signature = signature.toDER('hex');
+
+        console.log("amount for this tx: " ,this.amount);
 
     }//end signTransaction
 
@@ -50,12 +128,13 @@ class Transaction {
  }//end Transaction
   
  class Block {
-    constructor (timestamp, transactions, previousHash ='') {
+    constructor (timestamp, transactions, previousHash ='', amt) {
         //this.index = index;
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.previousHash = previousHash;
         this.hash = this.createHash();
+        this.data = amt;
         //add nonce for mining
         this.nonce = 0;
     }
@@ -99,7 +178,12 @@ class Blockchain {
     //create genesis block
     createGenesisBlock () {
         const time = new Date().getTime();
-        return new Block( time ,'Genesis Block' , '0' );
+    
+    const dataObj = {
+        title: 'Genesis Block' ,
+        id: "Hash"
+    }
+        return new Block( time ,'Genesis Block' , '0', dataObj );
     }
     //get last block
     getLatestBlock() {
@@ -109,14 +193,15 @@ class Blockchain {
     // create new block
   
     //Instead of mining block by block, queue them up as transactions and go from there...
-    minePendingTransactions (miningRewardAddress) {
-        
+    minePendingTransactions (miningRewardAddress, data) {
+        console.log("Blockchain.minePendingTransactions: ", data )
         //newBlock.previousHash = this.getLatestBlock().hash;
-        let block = new Block(Date.now(), this.pendingTransactions);
+        let block = new Block(Date.now(), this.pendingTransactions, {amount: 100});
+        block.data = data;
         block.previousHash = this.getLatestBlock().hash;
         block.mineBlock(this.difficulty);
   
-        console.log("Transaction block successfully mined.");
+        console.log("Transaction block successfully mined: ", block);
         this.chain.push(block);
   
         this.pendingTransactions = [
@@ -214,5 +299,5 @@ class Blockchain {
   
  module.exports.Blockchain = Blockchain;
  module.exports.Transaction = Transaction;
- 
- 
+ module.exports.Token = Token;
+ module.exports.Guild = Guild;
