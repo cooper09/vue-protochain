@@ -9,15 +9,21 @@
     <v-container>
         <form >
           <br/><br/>
-            <b>From Address:</b>  <input id="from" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly"><br/>
+            <b>Proposor/Sponsor:</b>  <input id="from" type="text" v-model="from" :placeholder="keys.publicKey" class="border" readonly="readonly"><br/>
             <p  class="smallFont">This is your wallet address. You cannot change it because you can only spend your own coins.</p>
             <br/>
-            <b>Type of Share:</b> <input id="to" type="text" v-model="to" placeholder ="0x000" class="border"><br/>
+            <b>Type of Share:</b> <input id="share" type="text" v-model="token" placeholder ="Privi" class="border"><br/>
+            <p  class="smallFont">Token to share. 
+              </p><br/>
+            <b>Shares Requested:</b> <input id="amount" type="text" v-model="amount" placeholder ="100" class="border"><br/>
+            <p  class="smallFont">Amount required for project.</p><br/>
+            <b>Payment Token:</b> <input id="token" type="text" v-model="token" placeholder ="PRIV" class="border"><br/>
+            <p  class="smallFont">Token for payment.
+            </p><br/>
+        
+              <b>Details:</b> <input id="details" type="textfield" v-model="details" placeholder ="Type details here..." class="border"><br/>
             <p  class="smallFont">The address of the wallet where you want to send the money to. You can type random text here (if you are not interested in recovering the funds)
-</p><br/>
-            <b>Amount:</b> <input id="amount" type="text" v-model="amount" placeholder ="100" class="border"><br/>
-            <p  class="smallFont">You can transfer any amount. Account balance is not checked in this demo. Have at it</p><br/>
-           
+              </p><br/>
         </form>
         <div>
               <v-btn
@@ -48,7 +54,11 @@ export default {
       keys: {},
       from:'',
       to: '',
-      amount: ''
+      amount: '',
+      share:'',
+      token: '', 
+      details:'', 
+      guild:{}
     }
   },
   methods: {
@@ -62,6 +72,21 @@ export default {
   //retrieve our public (walletPublicAddr) and  () key
       const walletKey = this.keys.walletKey;
       const walletPublicAddr = this.keys.walletPublicAddr;
+
+      const proposalObj = {
+        proposer: this.keys.publicKey,
+        sponsor: this.proposer,
+        sharesRequested: this.amount,
+        paymentToken: this.token,
+        yesVotes: null,
+        noVotes: null, 
+        details: this.details
+      }//end proposalObj
+
+      // Add the new member to Guilds Membership list
+    this.guild.proposals.push(proposalObj); 
+
+    alert("Your Proposal has been added. Click on Submit Vote to see current proposals.")
 
     //  const newTx = new Transaction(walletPublicAddr,this.keys.publicKey, 100);
     //  console.log("our New transaction: ", newTx );
@@ -91,7 +116,7 @@ export default {
 
       this.keys = this.$store.getters.getKeys;
 
-      
+      this.guild = this.$store.getters.getGuild;
   
   }
 }//export

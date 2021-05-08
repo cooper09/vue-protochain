@@ -42,8 +42,8 @@ class Guild {
         ];
         this.proposals = [
             {
-                name: "Proposal 1",
-                proposal: "proposal data 1"
+                proposer: "Proposal 1",
+                details: "proposal data 1"
             }
         ];
 

@@ -13,8 +13,8 @@
       <span class="transaction" > Proposal</span>
       
    <div class="tx">
-        <p class="wrap"><b>Name: </b>{{proposal.name}}</p>
-        <p class="wrap"><b>Proposal: </b>{{proposal.proposal}}</p>
+        <p class="wrap"><b>Name: </b>{{proposal.proposer}}</p>
+        <p class="wrap"><b>Proposal: </b>{{proposal.details}}</p>
         <span><form>
           <input type="radio" name="choice" value="yes"> Yes
           <input type="radio" name="choice" value="no"> No
@@ -24,13 +24,14 @@
           raisedI can 
           primary
           color="indigo" 
-          @click="submitVote()">Submit
+          @click="submitVote(proposal)">Submit
         </v-btn></span>
       </div> 
     </div> 
   </div>
 </template>
 <script>
+import {createTransaction} from '../helpers';
 export default {
   name:'ListProposals',
   data () {
@@ -39,16 +40,19 @@ export default {
       chain:{},
       block: '', 
       proposals:[],
-      guild:{}
+      guild:{},
+      keys: {}
     }
   },
   methods: {
     closeMe(){
       this.$router.push('/');
     },
-    submitVote() {
-      alert("Your vote has been submitted")
-    }
+    submitVote(proposal, keys) {
+      alert("Your vote has been submitted: "+  proposal.details )
+      const stinky = createTransaction(proposal, this.keys);
+      console.log("Return from createTransaction: ", stinky )
+;    }
   },//end methods
   created() {
     //First get the coin class..
@@ -66,13 +70,11 @@ export default {
         this.guild.proposals.map( (proposal) => {
           console.log("ListProposals.proposal: ", proposal )
           this.proposals.push(proposal)
-        /*  if (block.hash === this.block.hash ) {
-             this.transactions = block.transactions;
-             return 
-          } //end iffy  */
           //return ("Transaction not found")
         }) 
-  }
+
+        const keys = this.$store.getters.getKeys;
+  }//end created
 }//export
 </script>
 <style scoped>

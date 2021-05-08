@@ -2,6 +2,8 @@
 import Web3 from 'web3';
 const sha256 = require('crypto-js/sha256');
 
+import {Transaction} from './blockchain_guild.js';
+
 //slideshow.js
 export const doSomething = (n)=>{
     return(" I hear and I obey!!");
@@ -44,4 +46,19 @@ export const getKeys= () => {
     return keysObj;
   }//end getKeys
 
- 
+  export const createTransaction = (data, keys) => {
+    console.log("CreateTransacton for: ", data , " keys: ", keys );
+
+    const newTx = new Transaction(keys, keys.publicKey, 100);
+    console.log("our New transaction: ", newTx );
+
+      //sign transaction with the private key
+      newTx.signTransaction(keys, keys.publicKey); 
+      console.log("Signed transaction: ", newTx.signature );
+  
+      //set the new transaction to the store
+      this.$store.commit ('setNewTx', newTx );
+      const tx = this.$store.getters.getNewTx;
+      console.log("CreateTransaction - Transaction in the store: ", tx );
+    return tx;
+ }//end createTransaction
