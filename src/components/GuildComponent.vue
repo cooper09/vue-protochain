@@ -38,8 +38,9 @@ export default {
       //alert("Uncle Sam wants You!!!")
       //this.$emit('show-transactions', hash );
      
-    //  this.$router.push({name:'Become Member', params: {data, "test"})
-    this.$router.push('/addmember')
+    //  this.$router.push({name:'Add Member', params: {data, "test"}})
+      this.$router.push({name: 'List Proposals', params: {data: "test" }})
+    //this.$router.push('/addmember')
   
     }, //end beomeMember
     submitProposal() {

@@ -34,8 +34,17 @@ class Guild {
             noVotes: "",
             details: "Make the world a better place..."
         } 
-        this.members = [];
-        this.proposals = [];
+        this.members = [
+            {
+                members: "member data"
+            }
+        ];
+        this.proposals = [
+            {
+                name: "Proposal 1",
+                proposal: "proposal data 1"
+            }
+        ];
 
     }//end constructor
 

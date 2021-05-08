@@ -7,16 +7,14 @@
           color="indigo" 
           @click="closeMe()">Exit
         </v-btn>
-    <h3  class="myIndigo">List of Proposals currently on the Block: </h3> <span><p class="wrap">{{block.hash}}</p></span>
-
-    <div v-for="tx in proposals" :key="proposal.name">
-      <span class="transaction" > Transaction </span>
- <!--     <div class="tx">
-        <p class="wrap"><b>To: </b>{{tx.toAddress}}</p>
-        <p class="wrap"><b>From: </b>{{tx.fromAddress}}</p>
-        <p><b>Amount: </b>{{tx.amount}}</p>
-      </div> -->
-    </div>
+    <h3  class="myIndigo">List of Proposals currently on the Block: </h3> <span><p class="wrap">goodie goes here</p></span>
+       <div v-for="proposal in proposals" :key="proposal.name">
+      <span class="transaction" > Proposal </span>
+   <div class="tx">
+        <p class="wrap"><b>Name: </b>{{proposal.name}}</p>
+        <p class="wrap"><b>Proposal: </b>{{proposal.proposal}}</p>
+      </div> 
+    </div> 
   </div>
 </template>
 <script>
@@ -27,7 +25,8 @@ export default {
       coin: {},
       chain:{},
       block: '', 
-      proposals:[]
+      proposals:[],
+      guild:{}
     }
   },
   methods: {
@@ -40,21 +39,23 @@ export default {
 
       console.log("this route params: ", this.$route.params.foo );
 
-        this.block = this.$route.params.foo;
+        this.block = this.$route.params.data;
         console.log("selected block: ", this.block );
 
         this.coin = this.$store.getters.getCoin;
 
-    //    this.guild = this.coin.guild;
-    //    console.log("Current Proposals: ", guild )
+        this.guild = this.$store.getters.getGuild;
+        console.log("Current Proposals: ", this.guild.proposals )
 
-    /*    this.chain.map( block => {
-          if (block.hash === this.block.hash ) {
+        this.guild.proposals.map( (proposal) => {
+          console.log("ListProposals.proposal: ", proposal )
+          this.proposals.push(proposal)
+        /*  if (block.hash === this.block.hash ) {
              this.transactions = block.transactions;
              return 
-          } //end iffy 
-          return ("Transaction not found")
-        }) */
+          } //end iffy  */
+          //return ("Transaction not found")
+        }) 
   }
 }//export
 </script>
