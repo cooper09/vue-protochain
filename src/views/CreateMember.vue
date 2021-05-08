@@ -88,6 +88,7 @@ export default {
 
     const memberObj = {
       title: "New Member",
+      id: this.keys.publicKey, 
       name: this.name,
       delegateKey: walletKey,
       shares: 100,
