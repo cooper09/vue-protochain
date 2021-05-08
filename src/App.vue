@@ -16,7 +16,7 @@
     </v-app-bar>
     <v-content   class="animated fadeIn">
 
-    <h2 class="myIndigo">Proto-Moloch 2</h2>
+    <h2 class="myIndigo">Proto-Guild</h2>
       You can upload content (video, audio, nft ) or you can enjoy content...help yourself.
     <p></p>
     <p class="wrap m">
@@ -96,14 +96,17 @@ export default {
   // create blockchain class
     const coin = new Blockchain ();
     const guild = new Guild(1,2,3,4);
+
     this.$store.commit('setCoin', coin);
     this.$store.commit('setGuild', guild);
+    
     const newCoin = this.$store.getters.getCoin;
     console.log("Block Coin in the store: ", newCoin )
 
     //get and store private and public keys
     this.keys = getKeys();
     console.log("App - Our Keys: ", this.keys);
+    this.$store.commit('setKeys', this.keys);
 
   //cooper s - be sure to put back when using MetaMask
  //await this.loadWeb3();      

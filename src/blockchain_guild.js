@@ -21,6 +21,7 @@ class Guild {
         this.processingReward=0
 
         let Member = {
+            name:"Default",
             delegateKey: "0x00",
             shares: 100,
             exists: true

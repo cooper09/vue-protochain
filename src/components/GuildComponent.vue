@@ -35,11 +35,11 @@ export default {
  props: ["block"],
    methods: {
     becomeMember() {
-      //alert("Uncle Sam wants You!!!")
+      alert("Uncle Sam wants You!!!")
       //this.$emit('show-transactions', hash );
      
     //  this.$router.push({name:'Add Member', params: {data, "test"}})
-      this.$router.push({name: 'List Proposals', params: {data: "test" }})
+      this.$router.push({name: 'Add Member', params: {keys: this.keys }})
     //this.$router.push('/addmember')
   
     }, //end beomeMember
@@ -50,6 +50,7 @@ export default {
     submitVote() {
     //  alert("Submit your Vote")
       this.$router.push('/listproposals')
+      this.$router.push({name: 'List Proposals', params: {data: "test" }})
     }
 
   },//end methods
