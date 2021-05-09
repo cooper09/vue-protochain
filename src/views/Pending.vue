@@ -69,15 +69,17 @@ export default {
     console.log("\n Starting up the 7 dwarfs...");
 
     const walletPublicAddr = this.keys; 
-    const balance = this.coin.minePendingTransactions(walletPublicAddr);
+    this.coin.minePendingTransactions(walletPublicAddr);
+     const finalBalance = this.coin.getBalanceOfAddress(this.keys)
                 
-  console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
+  console.log('\n Wallet Balance 1: ', this.coin.getBalanceOfAddress(this.keys));
+  console.log('\n Wallet Balance 2: ', finalBalance);
 
-  this.$store.commit('setBalance', balance )
+  //The New Balance should reflect the add;l mining reward
+  this.$store.commit('setBalance', finalBalance )
 
   console.log("Final Chain: ", this.coin.chain );
   
-
   alert("Congratulations! You're block has been mined...")
     
     }
