@@ -9,6 +9,7 @@ export default new Vuex.Store({
     currentChain: [],
     keys: {},
     currentBalance: 0,
+    loanState: "From the Beginning...",
     newTx:{
       from: "the kid",
       to: "my girl",
@@ -29,6 +30,10 @@ export default new Vuex.Store({
      setBalance (state, data ){
       console.log("Alass....Store mute - new Tx: ", data )
       state.currentBalance = data;
+    },
+     setLoanState (state, data ){
+      console.log("Store LoanStae - new Tx: ", data )
+      state.loanState = data;
     }
   },//end mutations
   actions: {
@@ -45,12 +50,17 @@ export default new Vuex.Store({
     setBalance ({commit}, data) {
      alert("Store action - balance: ", data )
       commit('setBalance', data )
+    },
+    setLoanState ({commit}, data) {
+     alert("Store action - loan state: ", data )
+      commit('setLoanState', data )
     }
   },//end actions
   getters: {
     getCoin:  state => state.coinClass,
     getKeys: state => state.keys,
     getNewTx: state => state.newTx,
-    getBalance: state => state.currentBalance
+    getBalance: state => state.currentBalance,
+    getLoanState: state => state.loanState
   }//end getters
 })

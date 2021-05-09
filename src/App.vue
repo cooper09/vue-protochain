@@ -29,8 +29,8 @@
     
          <router-view></router-view>
           <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="updateBalance()">Update Balance</v-btn></span>
-          <span><v-btn class="btn right" outlined raised primary color="indigo" @click="createPage()">Create Transaction</v-btn></span>
-          <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="settingsPage()">Settings</v-btn></span>
+          <span><v-btn class="btn right" outlined raised primary color="indigo" @click="repayPage()">Repay Loan</v-btn></span>
+          <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="borrowPage()">Borrow</v-btn></span>
     </v-content>
     <v-content transition="slide-x-transition">
             <HelloWorld/> 
@@ -60,15 +60,15 @@ export default {
     appMethod (){
       console.log('appMethod at our service...')
     },
-     settingsPage() {
-    console.log("settings page")
-      this.$router.push('/settings')
+     borrowPage() {
+    console.log("borrow page")
+      this.$router.push('/borrow')
     },
-  createPage(){
+  repayPage(){
       //this.$router.push({name: 'Create Transactions', params: {keys: this.keys }})
-      this.$router.push('/create')
+      this.$router.push('/repay')
     },
-    updateBalance() {
+  updateBalance() {
       this.balance = this.$store.getters.getBalance;
     },
   async loadWeb3 () {
@@ -102,8 +102,10 @@ export default {
     this.$store.commit('setKeys', this.keys);
 
     this.balance = this.$store.getters.getBalance
+    console.log("App - opening balance: ", this.balance )
 
-  await this.loadWeb3();
+// cooper s - we don't need metamask for now, but when we do be sure to uncomment the line
+//  await this.loadWeb3();
     
   }//end created
 

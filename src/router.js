@@ -7,6 +7,9 @@ import CreateTransaction from './views/CreateTransaction.vue'
 import ListTransactions from './views/ListTransactions.vue'
 import Pending from './views/Pending.vue'
 
+import Borrow from './views/Borrow.vue'
+import Repay from './views/Repay.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -50,6 +53,16 @@ export default new Router({
       path: '/pending',
       name: 'Pending Transactions',
       component: Pending
+    },
+    {
+      path: '/borrow',
+      name: 'Borrow Transaction',
+      component: Borrow
+    },
+    {
+      path: '/repay',
+      name: 'Repay Loan',
+      component: Repay
     }
   ]
 })

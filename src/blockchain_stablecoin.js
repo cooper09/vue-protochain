@@ -7,20 +7,49 @@ const sha256 = require('crypto-js/sha256');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 
+
+class Token {
+    constructor () {
+        this.name = "Privi Stablecoin";
+        this.symbol = "pUSD";
+        this.totalSubpply = 10000000000000000000;
+    }//end constructor
+
+    transfer() {
+        console.log("Transfer tokens...")
+    }
+    approval(){
+        console.log('transfer approval');
+    }
+    transferFrom() {
+        console.log("Transfer From")
+    }
+
+}//end token
+
+
 class BasicLoan {
     constructor(loanAmt,feeAmt, collateralAmt, state) {
         this.loanAmt = loanAmt,
-        this.feeAmt = feeAnmt, 
+        this.feeAmt = feeAmt, 
         this.collateralAmt = collateralAmt, 
-        this.state = state
+        this.state = state,
+        this.keys = this.getKeys()
+
+        console.log("BasicLoan created: ", this.state)
     }
 
-    fundLoan() {
-
+    fundLoan(walletAddress) {
+        console.log("Here's you money! Pleasure doing business with you...");
+        let pUSD = new Token();
+        console.log("Create pSD token: ", pUSD)
     }
 
-    acceptLoan() {
-
+    acceptLoan(data) {
+        console.log("BasicLoan.acceptLoan: ", data )
+        //cooper s - Here's where we check if the collateral can cover the loand
+        // for now we just say that it does and move on....
+        return true
     }
 
     repayLoan(){
@@ -29,6 +58,23 @@ class BasicLoan {
 
     liquidateLoan (){
 
+    }
+    getKeys () {
+        const key = ec.genKeyPair();
+        const publicKey = key.getPublic('hex');
+        const privateKey = key.getPrivate('hex');
+
+        console.log("Our private key: ", privateKey )
+        const walletKey = ec.keyFromPrivate(privateKey)
+        const walletPublicAddr = walletKey.getPublic('hex');
+    
+      const  keysObj = {
+          publicKey: publicKey,
+          privateKey: privateKey, 
+          bankPublicAddr: walletPublicAddr,
+          bankKeys: walletKey
+        }
+        return keysObj;
     }
  }//end BasicLoan
 
@@ -163,14 +209,12 @@ class Blockchain {
     }//end createTransaction
   
     getBalanceOfAddress (address) {
-        console.log("getBalanceOfAddress address: ", address );
-        console.log("getBalanceOfAddress address: ", address);
 
-        let balance = 0;
+        let balance;
         for (const block of this.chain ) {
             for (const trans of block.transactions) {
-                console.log("getBalanceOfAddress toAddress: ", trans.fromAddress)
-                console.log("getBalanceOfAddress fromAddress: ", trans.toAddress)
+               // console.log("getBalanceOfAddress toAddress: ", trans.fromAddress)
+               // console.log("getBalanceOfAddress fromAddress: ", trans.toAddress)
                 if (trans.fromAddress === address) {
                     console.log("sending funds remove", trans.amount, " from wallet");
                     balance -= trans.amount;
@@ -247,5 +291,5 @@ class Blockchain {
   
  module.exports.Blockchain = Blockchain;
  module.exports.Transaction = Transaction;
- 
+ module.exports.BasicLoan = BasicLoan;
  
