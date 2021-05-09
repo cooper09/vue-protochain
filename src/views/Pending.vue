@@ -69,11 +69,14 @@ export default {
     console.log("\n Starting up the 7 dwarfs...");
 
     const walletPublicAddr = this.keys; 
-    this.coin.minePendingTransactions(walletPublicAddr);
+    const balance = this.coin.minePendingTransactions(walletPublicAddr);
                 
   console.log('\n Wallet Balance: ', this.coin.getBalanceOfAddress(this.keys));
 
-  console.log("Final Chain: ", this.coin.chain )
+  this.$store.commit('setBalance', balance )
+
+  console.log("Final Chain: ", this.coin.chain );
+  
 
   alert("Congratulations! You're block has been mined...")
     

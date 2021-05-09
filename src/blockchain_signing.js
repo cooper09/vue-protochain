@@ -138,19 +138,27 @@ class Blockchain {
     }//end createTransaction
   
     getBalanceOfAddress (address) {
-        console.log("getBalanceOfAddress address: ", address )
+        console.log("getBalanceOfAddress address: ", address );
+        console.log("getBalanceOfAddress address: ", address);
+
         let balance = 0;
         for (const block of this.chain ) {
             for (const trans of block.transactions) {
+                console.log("getBalanceOfAddress toAddress: ", trans.fromAddress)
+                console.log("getBalanceOfAddress fromAddress: ", trans.toAddress)
                 if (trans.fromAddress === address) {
+                    alert("stinky 1");
                     balance -= trans.amount;
                 }//end if
                
                 if (trans.toAddress === address) {
+                    alert("stinky 2");
                     balance += trans.amount;
                 }//end if
             }//end for
         }//end for
+        console.log()
+        console.log("getBalanceOfAddress balance: ", balance )
         return balance;
     }//end getBalanceOf
   

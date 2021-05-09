@@ -43,7 +43,7 @@ export default new Vuex.Store({
       commit('setnewTx', data )
     },
     setBalance ({commit}, data) {
-      console.log("Store action - balance: ", data )
+     alert("Store action - balance: ", data )
       commit('setBalance', data )
     }
   },//end actions
