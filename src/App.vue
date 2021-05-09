@@ -21,10 +21,14 @@
     <p></p>
     <p class="wrap m">
         <span class="myIndigo"><b>Wallet (Public) Address:</b></span> {{keys.publicKey}}
-        <p class="myIndigo"><b>Balance: </b> {{this.balance}} </p>
+      
+          <p class="myIndigo"><b>Balance: </b> {{this.balance}} </p>
+         
+      
     </p>
     
          <router-view></router-view>
+          <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="updateBalance()">Update Balance</v-btn></span>
           <span><v-btn class="btn right" outlined raised primary color="indigo" @click="createPage()">Create Transaction</v-btn></span>
           <span><v-btn class="btn right" outlined raised primary color="indigo"  @click="settingsPage()">Settings</v-btn></span>
     </v-content>
@@ -63,6 +67,9 @@ export default {
   createPage(){
       //this.$router.push({name: 'Create Transactions', params: {keys: this.keys }})
       this.$router.push('/create')
+    },
+    updateBalance() {
+      this.balance = this.$store.getters.getBalance;
     },
   async loadWeb3 () {
     console.log("loadWeb3");

@@ -147,12 +147,12 @@ class Blockchain {
                 console.log("getBalanceOfAddress toAddress: ", trans.fromAddress)
                 console.log("getBalanceOfAddress fromAddress: ", trans.toAddress)
                 if (trans.fromAddress === address) {
-                    alert("stinky 1");
+                    console.log("sending funds remove", trans.amount, " from wallet");
                     balance -= trans.amount;
                 }//end if
                
                 if (trans.toAddress === address) {
-                    alert("stinky 2");
+                    console.log("receiving funds add ", trans.amount, " to wallet");
                     balance += trans.amount;
                 }//end if
             }//end for

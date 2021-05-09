@@ -80,7 +80,9 @@ export default {
 
   console.log("Final Chain: ", this.coin.chain );
   
-  alert("Congratulations! You're block has been mined...")
+  alert("Congratulations! You're block has been mined...");
+
+  this.$router.push('/');
     
     }
   },//end methods
