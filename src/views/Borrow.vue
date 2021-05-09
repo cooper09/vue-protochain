@@ -87,7 +87,13 @@ export default {
               1) add this transaction to queue
               2) then mine (should be some interval but this will be instaneous)
             */
-            this.coin.minePendingTransactions(this.keys.publicKey);
+                 const loanObj = {
+                  id: "Successful Loan",
+                  loanAmt: this.loanAmt,
+                  feeAmt: this.feeAmt,
+                  collateral: this.collateral
+                }
+            this.coin.minePendingTransactions(this.keys.publicKey, loanObj);
             const finalBalance = this.coin.getBalanceOfAddress(this.keys);
 
             console.log("new balance: ", finalBalance)
