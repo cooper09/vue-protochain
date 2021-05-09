@@ -7,6 +7,31 @@ const sha256 = require('crypto-js/sha256');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 
+class BasicLoan {
+    constructor(loanAmt,feeAmt, collateralAmt, state) {
+        this.loanAmt = loanAmt,
+        this.feeAmt = feeAnmt, 
+        this.collateralAmt = collateralAmt, 
+        this.state = state
+    }
+
+    fundLoan() {
+
+    }
+
+    acceptLoan() {
+
+    }
+
+    repayLoan(){
+
+    }
+
+    liquidateLoan (){
+
+    }
+ }//end BasicLoan
+
 class Transaction {
     constructor (fromAddress, toAddress, amount ){
         this.fromAddress = fromAddress;

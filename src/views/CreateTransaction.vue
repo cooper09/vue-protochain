@@ -35,7 +35,7 @@
     </v-container>
 </template>
 <script>
-import {Transaction} from '../blockchain_signing.js';
+import {Transaction} from '../blockchain_stablecoin.js';
 import Pending from './Pending';
 
 export default {

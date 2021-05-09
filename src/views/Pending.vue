@@ -84,7 +84,7 @@ export default {
 
   this.$router.push('/');
     
-    }
+    }//end beginMining
   },//end methods
   created () {
     this.tx = this.$store.getters.getNewTx;
