@@ -16,7 +16,7 @@
                     <b>Loan Amount (pUSD):</b> <input id="loanAmt" type="text" v-model="loanAmt" placeholder ="amount in pUSD" class="border"><br/>
                     <p  class="smallFont">Amount of pUSD stablecoin you would like to receive.
         </p><br/>
-                    <b>Fee Amount:</b> <input id="feeAmt" type="text" v-model="feeAmt" placeholder ="1" class="border" readonly="readonly"><br/>
+                    <b>Fee Amount (pUSD}:</b> <input id="feeAmt" type="text" v-model="feeAmt" placeholder ="1 pUSD" class="border" readonly="readonly"><br/>
                     <p  class="smallFont">Brokerage Fee</p><br/>
 
                     <b>Collateral Amount (Privi):</b> <input id="collateral" type="text" v-model="collateral" placeholder ="100" class="border" ><br/>
@@ -96,9 +96,11 @@ export default {
             this.coin.minePendingTransactions(this.keys.publicKey, loanObj);
             const finalBalance = this.coin.getBalanceOfAddress(this.keys);
 
-            console.log("new balance: ", finalBalance)
-
+            console.log("New balance: ", finalBalance)
+            alert("Congratulations! Your funds have been added to your wallet");
+            this.$router.push('/')
          }//end iffy 
+
     }//end submitLoan
 
   },//end methods

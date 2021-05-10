@@ -16,7 +16,7 @@
     </v-app-bar>
     <v-content   class="animated fadeIn">
 
-    <h2 class="myIndigo">Proto-Chain Blockchain</h2>
+    <h2 class="myIndigo">Proto-Chain StableCoin</h2>
     Each card represents a block on the uploaded blockchain. Click "Show Transactions" to see the transactions stored inside.
     <p></p>
     <p class="wrap m">
@@ -143,5 +143,9 @@ body {
 }
 .myIndigo {
   color: indigo;
+}
+input[type="text"] {
+    box-sizing: border-box;
+    padding-left: 10px;
 }
 </style>
